@@ -2,7 +2,7 @@
 Public and private backend notes for TYPO3
 
 ## Introduction
-##What does it do?
+### What does it do?
 This extension sets up a new module “Notes” within the user modules, which enables the editors to write categorized private and public notes. Writing notes is empowered by TYPO3 integrated ckeditor. Backend Notes is based on Extbase and Fluid and works with typo3 10.4.1 - 11.5.99
 
 ## Users manual
