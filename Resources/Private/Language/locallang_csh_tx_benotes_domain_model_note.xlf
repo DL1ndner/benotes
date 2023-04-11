@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-04-12T21:30:33Z" product-name="benotes">
+		<header/>
+		<body>
+			<trans-unit id="crdate.description">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="bodytext.description">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="publicnote.description">
+				<source>Public Note</source>
+			</trans-unit>
+			<trans-unit id="privatenote.description">
+				<source>Private Note</source>
+			</trans-unit>
+			<trans-unit id="cruser.description">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="category.description">
+				<source>Category</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

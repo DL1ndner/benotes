@@ -1,0 +1,134 @@
+
+<nav class="pagination-wrap">
+<ul class="pagination">
+    <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+        <f:then>
+           
+			<li class="page-item first">
+				<a href="{f:uri.action(action:actionName, arguments:{currentPage: 1})}" title="{f:translate(key:'pagination.first')}">
+					<span class="page-link">
+						<span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-first" data-identifier="actions-view-paging-first">
+							<span class="icon-markup">
+								<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-bar-left" /></svg>
+							</span>
+						</span>
+					</span>
+				</a>
+			</li>
+            
+            <li class="page-item previous">
+                <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber})}" title="{f:translate(key:'pagination.previous')}">
+                    <span class="page-link">
+                        <span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-previous" data-identifier="actions-view-paging-previous">
+							<span class="icon-markup">
+								<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-double-left" /></svg>
+							</span>
+						</span>
+                    </span>
+                </a>
+            </li>
+        </f:then>
+        <f:else>
+
+                <li class="page-item disabled">
+					<span class="page-link">
+						<span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-first" data-identifier="actions-view-paging-first">
+							<span class="icon-markup">
+								<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-bar-left" /></svg>
+							</span>
+						</span>
+					</span>
+				</li>
+                <li class="page-item disabled">
+					<span class="page-link">
+                        <span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-previous" data-identifier="actions-view-paging-previous">
+							<span class="icon-markup">
+								<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-double-left" /></svg>
+							</span>
+						</span>
+                    </span>
+				</li>
+
+        </f:else>
+    </f:if>
+   
+        <li class="page-item">
+			<span class="page-link">
+					  {pagination.displayRangeStart} - {pagination.displayRangeEnd}
+			</span>
+        </li>
+    <f:comment>
+    <f:for each="{pagination.allPageNumbers}" as="page">
+        <li class="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'current')}">
+            <a href="{f:uri.action(action:actionName, arguments:{currentPage: page})}">{page}</a>
+        </li>
+    </f:for>
+	
+    <f:if condition="{pagination.hasMorePages}">
+        <li>…</li>
+		
+    </f:if>
+	</f:comment>
+	<li class="page-item">
+			<span class="page-link">
+				<form style="display:inline;"
+							data-global-event="submit"
+							data-action-navigate="$form=~s/$value/"
+							data-navigate-value="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber})}"
+							data-value-selector="input[name='paginator-target-page']">
+						<input
+								min="{pagination.displayRangeStart}"
+								max="{pagination.displayRangeEnd}"
+								data-number-of-pages="{pagination.maximumNumberOfLinks}"
+								name="paginator-target-page"
+								class="form-control form-control-sm paginator-input"
+								size="5"
+								value="1"
+								type="number"/>
+				</form>
+			
+			</span>
+        </li>
+    <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+        <f:then>
+            <li class="page-item">
+                <a class="page-link" href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber})}" title="{f:translate(key:'pagination.next')}">
+                     <span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-next" data-identifier="actions-view-paging-next">
+						<span class="icon-markup">
+							<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-double-right" /></svg>
+						</span>
+					</span>
+                     </a>
+            </li>
+			<li class="page-item">
+                <a class="page-link" href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber})}" title="{f:translate(key:'pagination.last')}">
+                    <span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-last" data-identifier="actions-view-paging-last">
+						<span class="icon-markup">
+							<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-bar-right" /></svg>
+						</span>
+					</span>
+                </a>
+            </li>
+        </f:then>
+        <f:else>
+            <li class="page-item disabled">
+				<span class="page-link">
+					<span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-next" data-identifier="actions-view-paging-next">
+						<span class="icon-markup">
+							<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-double-right" /></svg>
+						</span>
+					</span>
+				</span>
+            </li>
+			<li class="page-item disabled">
+				<span class="page-link">
+					<span class="t3js-icon icon icon-size-small icon-state-default icon-actions-view-paging-last" data-identifier="actions-view-paging-last">
+						<span class="icon-markup">
+							<svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/actions.svg#actions-chevron-bar-right" /></svg>
+						</span>
+					</span>
+				</span>
+            </li>
+        </f:else>
+    </f:if>
+</ul>

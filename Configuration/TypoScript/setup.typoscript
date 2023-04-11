@@ -1,0 +1,56 @@
+
+ # Module configuration
+module.tx_benotes {
+	persistence {
+		storagePid = {$module.tx_benotes.persistence.storagePid}
+		classes.Tx_Extbase_Domain_Model_BackendUser {
+      			mapping {
+        			tableName = be_users
+        			recordType = 
+     			}
+    		}
+		
+	}
+	view {
+		templateRootPath = {$module.tx_benotes.view.templateRootPath}
+		partialRootPath = {$module.tx_benotes.view.partialRootPath}
+		layoutRootPath = {$module.tx_benotes.view.layoutRootPath}
+	}
+	settings {
+			### comma-separated list of recipient email addresses that get informed when new note is created
+        	infomailto = 
+			### how many notes should be displayed per page 
+			itemsPerPage = 8
+   	}
+
+}
+
+config.tx_extbase.persistence.classes {
+    DL\Benotes\Domain\Model\Note {
+        mapping {
+            columns.tstamp.mapOnProperty = tstamp
+			columns.cruser.mapOnProperty = userName
+              
+        }
+    }
+	DL\Benotes\Domain\Model\Category {
+        mapping {
+            columns.tstamp.mapOnProperty = tstamp
+			columns.cruser.mapOnProperty = userName
+              
+        }
+    }
+}
+config.tx_extbase.persistence.classes {
+	DL\Benotes\Domain\Model\NoteAuthor {
+		mapping {
+			tableName = be_users
+		}
+	}
+}
+
+page {
+  	includeCSS {
+    		benotes = EXT:benotes/Resources/Public/css/tx_benotes.css
+  	}
+}

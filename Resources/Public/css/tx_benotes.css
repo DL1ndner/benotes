@@ -1,0 +1,70 @@
+
+
+.typo3-fullDoc {
+  margin: 20px;
+}
+.typo3-fullDoc .alert {
+	margin-left: 250px;
+}
+
+table.tx_benotes {
+    border: 1px solid #bbb;
+    margin: 5px;
+    width: 90%;
+}
+
+.header_date {
+    width: 130px;
+}
+
+.header_author {
+    width: 130px;
+}
+
+.header_title {
+	width: 250px;
+	font-weight: bold;
+}
+.header_content {
+    width: 200px;
+}
+
+.header_cat {
+    width: 130px;
+ }
+.header_edit {
+    width: 60px;
+ }
+.header_delete {
+	width: 30px;
+ }
+.header_content {
+	width:500px;
+}
+.list_body {
+	padding-left:10px;
+ }
+
+tr.list_cat_odd {
+	background-color:#eee;
+}
+tr.list_cat_even {
+	background-color:#fff;
+}
+tr.list_public_notes {
+	background-color:#00eeee;
+	}
+tr.list_private_notes {
+	background-color:#ccff99;
+	}
+.f3-widget-paginator { width:800px; display: block; float: right; margin: 0 0 10px; }
+.f3-widget-paginator li { font-weight: bold; display: block; background-color: #eee; float: left; width: 30px; text-align: center; margin: 0 2px 2px; }
+.f3-widget-paginator li.current { background-color: #aaa; border: 1px solid black; padding: 2px; }
+.f3-widget-paginator li.next,
+.f3-widget-paginator li.previous { width: auto; }
+.f3-widget-paginator a { font-weight: normal; display: block; border: 1px solid black; padding: 2px; }
+
+.marker {
+	background-color:yellow;
+	padding:3px;
+}

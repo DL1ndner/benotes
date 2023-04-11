@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-04-12T21:30:32Z" product-name="benotes">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_benotes_domain_model_note">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.bodytext">
+				<source>Bodytext</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.public">
+				<source>Public</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.publicnote">
+				<source>Public Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.privatenote">
+				<source>Private Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.cruser">
+				<source>Cruser</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.category">
+				<source>Category</source>
+			</trans-unit>
+
+			<trans-unit id="tx_benotes_domain_model_category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.public">
+				<source>Public</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.cruser">
+				<source>Cruser</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

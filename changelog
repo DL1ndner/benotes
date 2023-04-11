@@ -1,0 +1,6 @@
+2018-06-26	Released Version 0.3.0: Use TYPO3 Styles and (external) CKEditor 4.7.3, Requires TYPO3 8.7.x
+2018-06-26	Released Version 0.3.1: Allow setting recipients list within typoscript: setting.infomailto
+2020-12-21  Released Version 0.4.0: Use new TYPO3 Styles and TYPO3 internal CKEditor (without t3links), requires TYPO3 9.5.1+
+2021-06-23  Released Version 0.4.1: Fix icon links
+2022-08-01  Released Version 0.5.0: requires TYPO3 11.5.x; use and depend on EXT:numbered_pagination!
+2022-08-02  Released Version 0.5.1: improved pagination, added confirmation for delete action

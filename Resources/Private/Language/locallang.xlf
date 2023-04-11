@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-04-12T21:30:32Z" product-name="benotes">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_benotes_domain_model_note">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_notes">
+                                <source>Notes</source>
+                        </trans-unit>
+			<trans-unit id="tx_benotes_domain_model_categories">
+                                <source>Categories</source>
+                        </trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.crdate">
+				<source>Datum</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.bodytext">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.publicnote">
+				<source>Public Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.privatenote">
+				<source>Private Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.public">
+				<source>Public Note?</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.publicnotes">
+				<source>Public Notes</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.privatenotes">
+				<source>Private Notes</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.cruser">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.newnote">
+				<source>New Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.editnote">
+				<source>Edit Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.backtolist">
+				<source>Back to list</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.createnote">
+				<source>Create Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.save">
+				<source>Save Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.savenew">
+				<source>Save new Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.delete">
+				<source>Delete Note</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.list">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.manage">
+				<source>Manage categories</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.required">
+				<source>(required)</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.public">
+				<source>public</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.private">
+				<source>private</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.cruser">
+				<source>Owner</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.create">
+				<source>Create Category</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.edit">
+				<source>Edit Category</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.delete">
+				<source>Delete Category</source>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.savenew">
+				<source>Save Category</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

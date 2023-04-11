@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-04-12T21:30:32Z" product-name="benotes">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_benotes_domain_model_note">
+				<target>Mitteilung/Notiz</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_notes">
+                                <target>Mitteilungen/Notizen</target>
+                        </trans-unit>
+			<trans-unit id="tx_benotes_domain_model_categories">
+                                <target>Kategorien</target>
+                        </trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.crdate">
+				<target>Datum</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.title">
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.bodytext">
+				<target>Inhalt</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.publicnote">
+				<target>Mitteilung</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.privatenote">
+				<target>Notiz</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.public">
+				<target>Öffentliche Mitteilung?</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.publicnotes">
+				<target>Mitteilungen</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.privatenotes">
+				<target>Notizen</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.cruser">
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.category">
+				<target>Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.newnote">
+				<target>Neue Mitteilung/Notiz</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.editnote">
+				<target>Mitteilung/Notiz bearbeiten</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.backtolist">
+				<target>Zurück zur Liste</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.createnote">
+				<target>Mitteilung/Notiz erstellen</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.save">
+				<target>Mitteilung/Notiz speichern</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.savenew">
+				<target>Neue Mitteilung/Notiz speichern</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.delete">
+				<target>Mitteilung/Notiz löschen</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category">
+				<target>Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.list">
+				<target>Kategorien</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.manage">
+				<target>Kategorien verwalten</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.required">
+				<target>(muss angegeben werden)</target>
+			</trans-unit>	
+			<trans-unit id="tx_benotes_domain_model_category.title">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.description">
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.public">
+				<target>öffentlich</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.private">
+				<target>privat</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.cruser">
+				<target>BesitzerIn</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.create">
+				<target>Kategorie erstellen</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.edit">
+				<target>Kategorie bearbeiten</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.delete">
+				<target>Kategorie löschen</target>
+			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_category.savenew">
+				<target>Kategorie speichern</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
