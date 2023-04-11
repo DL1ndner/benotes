@@ -1,7 +1,7 @@
 {
  2   "name": dl/benotes",
  3   "type": "typo3-cms-extension",
- 4   "description": "An example extension",
+ 4   "description": "Public and private backend notes for TYPO3",
  5   "license": "GPL-3.0-or-later",
  6   "require": {
  7      "typo3/cms-core": "^11.5 || ^12.0"
