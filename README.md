@@ -16,7 +16,7 @@ Can I answer on notes? Not yet, but could be a feature for the future.
 Can I assign notes to certain be_users/be_usergroups? Not yet, but could be a feature for the future.
 
 ## Administration
-1. Upload or load extension dl_benotes from TER
+1. Upload ans activate extension benotes
 2. Create a new Sysfolder and remember the Page ID
 3. Include static Template Backend Notes (benotes) to your Root Template
 4. Set module.tx_benotes.persistence.storagePid to your Sysfolder ID
