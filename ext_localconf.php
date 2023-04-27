@@ -25,6 +25,6 @@ call_user_func(function()
       "@import 'EXT:benotes/Configuration/TypoScript/constants.typoscript'"
    );
 });
-
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths']['700'] = 'EXT:benotes/Resources/Private/Templates/Email/';
 
 ?>
