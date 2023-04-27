@@ -33,6 +33,9 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\MailMessage;
+use TYPO3\CMS\Core\Mail\FluidEmail;
+use TYPO3\CMS\Core\Mail\Mailer;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
@@ -175,6 +178,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * action create
 	 * 
 	 * @param \Dl\Benotes\Domain\Model\Note $newNote
+	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newNote
 	 * @return void
 	 */
 	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote) {
@@ -188,6 +192,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$isitpublic = $newNote->getPublic();
 		$this->view->assign('public',$public);
 		
+		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
+		
 		// if note is public, send message to recipients defined by typoscript
 		if($isitpublic == 1) {
 			if($this->settings['infomailto'] !='') {
@@ -198,27 +204,28 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				$recipients = str_replace(',', ';', $recipients);
 				$recipients = explode(';', $recipients);
 			
-				$mail= GeneralUtility::makeInstance(\TYPO3\CMS\Core\Mail\MailMessage::class);
-     $mail
-        //->from(new Address($from))
-					->setFrom($from)
-        //->to(new Address($recipients))
-					->setTo($recipients)
-					->subject('Neue Mitteilung im Backend')
-					->text('Jemand hat eine neue Mitteilung im Backend erstellt. Du findest Sie unter Notes.')
-				->send();
-				if($mail->isSent()) {
+				$mail = GeneralUtility::makeInstance(FluidEmail::class);
+     				$mail
+				       ->to(...$recipients)
+				       ->format(FluidEmail::FORMAT_BOTH)
+				       ->setTemplate('NewNoteMail')
+							 ->assign('baseUri', (string)$site->getBase())
+				       ->assign('note', $newNote);
+				try {
+					GeneralUtility::makeInstance(Mailer::class)->send($mail);
 					$this->addFlashMessage('Öffentliche Mitteilung erstellt. Eine Bestätigungsmail wurde an ' . $this->settings['infomailto'] . ' versandt.');
-				} else {
+				}
+				catch (TransportExceptionInterface $e) {
 					$this->addFlashMessage('Öffentliche Mitteilung erstellt. Die Bestätigungsmail wurde nicht versandt.');
 				}
 			} else {
 				$this->addFlashMessage('Öffentliche Mitteilung erstellt.');
 			}
+
 		} else {
 			$this->addFlashMessage('Private Notiz erstellt.');
 		}
-				
+
 		$this->redirect('list');
 	}
 
@@ -245,6 +252,39 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->noteRepository->update($note);
 		$category = $this->categoryRepository->findAll();
 		$this->view->assign('category',$category);
+		$isitpublic = $note->getPublic();
+		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
+		// if note is public, send message to recipients defined by typoscript
+		if($isitpublic == 1) {
+			if($this->settings['infomailto'] !='') {
+				$from = \TYPO3\CMS\Core\Utility\MailUtility::getSystemFrom();
+				$recipients = $this->settings['infomailto'];
+				$recipients = trim($recipients);
+				$recipients = str_replace(',', ';', $recipients);
+				$recipients = explode(';', $recipients);
+
+    				$mail = GeneralUtility::makeInstance(FluidEmail::class);
+    				$mail
+		       			->to(...$recipients)
+		       			->format(FluidEmail::FORMAT_BOTH)
+		       			->setTemplate('UpdateNoteMail')
+					->assign('baseUri', (string)$site->getBase())
+		       			->assign('note', $note);
+    	 			try {
+					GeneralUtility::makeInstance(Mailer::class)->send($mail);
+ 				  	$this->addFlashMessage('Öffentliche Mitteilung geändert. Eine Bestätigungsmail wurde an ' . $this->settings['infomailto'] . ' versandt.');
+				}
+      				catch (TransportExceptionInterface $e) {
+			   		$this->addFlashMessage('Öffentliche Mitteilung geändert. Die Bestätigungsmail wurde nicht versandt.');
+				}
+			} else {
+			   	$this->addFlashMessage('Öffentliche Mitteilung geändert.');
+			}
+
+		} else {
+			$this->addFlashMessage('Private Notiz geändert.');
+		}
+
 		$this->redirect('list');
 	}
 
