@@ -1,5 +1,5 @@
 {
- "name": dl/benotes",
+ "name": "dl/benotes",
  "type": "typo3-cms-extension",
  "description": "Public and private backend notes for TYPO3",
  "license": "GPL-3.0-or-later",
