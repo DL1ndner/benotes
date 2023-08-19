@@ -14,7 +14,10 @@ $GLOBALS['TCA']['tx_benotes_domain_model_category'] = [
 		'delete' => 'deleted',
 		'title' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:tx_benotes_domain_model_categories',
 		'iconfile' => 'EXT:benotes/Resources/Public/Icons/tx_benotes_domain_model_category.gif',
-		'sortby' => 'sorting'
+		'sortby' => 'sorting',
+	        'security' => [
+	             'ignorePageTypeRestriction' => true
+	        ],
 	],
 	'interface' => [
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, public, cruser',
