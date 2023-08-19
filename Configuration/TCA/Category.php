@@ -19,9 +19,6 @@ $GLOBALS['TCA']['tx_benotes_domain_model_category'] = [
 	             'ignorePageTypeRestriction' => true
 	        ],
 	],
-	'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, public, cruser',
-	],
 	'types' => [
 		'1' => [
 			'showitem' => 'sys_language_uid;;;;, l10n_parent, l10n_diffsource, hidden, --palette--;;1, title, description, public, cruser,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime',
