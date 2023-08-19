@@ -4,13 +4,13 @@ services:
     autoconfigure: true
     public: false
 
-  DL\Benotes\:
+  Dl\Benotes\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
 
-  DL\Benotes\Controller\NoteController:
+  Dl\Benotes\Controller\NoteController:
     tags: ['backend.controller']
 
-  DL\Benotes\Controller\CategoyController:
+  Dl\Benotes\Controller\CategoyController:
     tags: ['backend.controller']
     
