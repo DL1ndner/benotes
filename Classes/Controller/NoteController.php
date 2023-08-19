@@ -37,6 +37,8 @@ use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\Mailer;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Backend\Attribute\Controller;
+use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
@@ -50,6 +52,11 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
  * NoteController
  */
 class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+
+	public function __construct(
+         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+    	 ) {
+	}
 
 	/**
 	 * noteRepository
