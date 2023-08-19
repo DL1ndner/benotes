@@ -39,14 +39,7 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => [
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
-				],
+				'type' => 'language'
 			],
 		],
 		'l10n_parent' => [
@@ -136,7 +129,8 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 				'richtextConfiguration' => 'default',
 				'cols' => 40,
 				'rows' => 15,
-				'eval' => 'trim,required',
+				'eval' => 'trim',
+				'required' = true,
 				/*'options' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
 				'wizards' => [
 					'RTE' => [
