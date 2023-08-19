@@ -20,9 +20,6 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 	             'ignorePageTypeRestriction' => true
 	        ],
 	],
-	'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, crdate, title, bodytext, public, cruser, cruser_id, category',
-	],
 	'types' => [
 		'1' => [
 			'showitem' => 'sys_language_uid;;;;, l10n_parent, l10n_diffsource, hidden, --palette--;;1, crdate, title, bodytext;;;, public, cruser, cruser_id, category,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime',
@@ -92,36 +89,22 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
 			'config' => [
-				'type' => 'input',
-				'renderType' => 'inputDateTime',
-				'size' => 13,
-				'eval' => 'datetime',
-				'behaviour' => [
-					'allowLanguageSynchronization' => 'true',
-				],
-				'checkbox' => 0,
-				'default' => 0,
-				'range' => [
-					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-				],
+				'type' => 'datetime',
+    				'format' => 'date',
+         			'required' => true,
+         			'size' => 20,
+         			'default' => 0,
 			],
 		],
 		'endtime' => [
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
 			'config' => [
-				'type' => 'input',
-				'renderType' => 'inputDateTime',
-				'size' => 13,
-				'eval' => 'datetime',
-				'behaviour' => [
-					'allowLanguageSynchronization' => 'true',
-				],
-				'checkbox' => 0,
-				'default' => 0,
-				'range' => [
-					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-				],
+				'type' => 'datetime',
+    				'format' => 'date',
+         			'required' => true,
+         			'size' => 20,
+         			'default' => 0,
 			],
 		],
 		'crdate' => [
@@ -131,8 +114,7 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 				'type' => 'none',
 				'format' => 'date',
 				'eval' => 'date',
- 
-			],	
+ 			],	
 		],
 		
 		'title' => [
@@ -141,7 +123,8 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 			'config' => [
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim,required'
+				'eval' => 'trim',
+	 			'required' => true,
 			],
 		],
 		'bodytext' => [
