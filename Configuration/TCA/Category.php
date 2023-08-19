@@ -86,36 +86,22 @@ $GLOBALS['TCA']['tx_benotes_domain_model_category'] = [
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
 			'config' => [
-				'type' => 'input',
-				'renderType' => 'inputDateTime', 
-				'size' => 13,
-				'eval' => 'datetime',
-				'behaviour' => [
-					'allowLanguageSynchronization' => 'true',
-				],
-				'checkbox' => 0,
-				'default' => 0,
-				'range' => [
-					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-				],
+				'type' => 'datetime',
+    				'format' => 'date',
+         			'required' => true,
+         			'size' => 20,
+         			'default' => 0,
 			],
 		],
 		'endtime' => [
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
 			'config' => [
-				'type' => 'input',
-				'renderType' => 'inputDateTime',
-				'size' => 13,
-				'eval' => 'datetime',
-				'behaviour' => [
-					'allowLanguageSynchronization' => 'true',
-				],
-				'checkbox' => 0,
-				'default' => 0,
-				'range' => [
-					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-				],
+				'type' => 'datetime',
+    				'format' => 'date',
+         			'required' => true,
+         			'size' => 20,
+         			'default' => 0,
 			],
 		],
 		'title' => [
@@ -124,7 +110,8 @@ $GLOBALS['TCA']['tx_benotes_domain_model_category'] = [
 			'config' => [
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim,required'
+				'eval' => 'trim',
+				'required' => true,
 			],
 		],
 		'description' => [
