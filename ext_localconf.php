@@ -26,6 +26,6 @@ call_user_func(function()
    );
 });
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths']['700'] = 'EXT:benotes/Resources/Private/Templates/Email/';
-$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['benotes'] = 'EXT:benotes/Resources/Public/';
+$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['benotes'] = 'EXT:benotes/Resources/Public/css/tx_benotes.css';
 
 ?>
