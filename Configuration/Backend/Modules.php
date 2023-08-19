@@ -1,4 +1,9 @@
 <?php
+
+use Dl\Benotes\Controller\NoteController;
+use Dl\Benotes\Controller\CategoryController;
+
+
 return [
     'user_benotes' => [
         'parent' => 'user',
