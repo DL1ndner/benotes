@@ -11,6 +11,4 @@ services:
   Dl\Benotes\Controller\NoteController:
     tags: ['backend.controller']
 
-  Dl\Benotes\Controller\CategoyController:
-    tags: ['backend.controller']
     
