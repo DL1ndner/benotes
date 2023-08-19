@@ -51,6 +51,7 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
 /**
  * NoteController
  */
+#[Controller]
 class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	public function __construct(
