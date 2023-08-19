@@ -15,7 +15,10 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 		'title' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:tx_benotes_domain_model_notes',
 		//'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('benotes') . 'Resources/Public/Icons/tx_benotes_domain_model_notes.gif',
 		'iconfile' => 'EXT:benotes/Resources/Public/Icons/tx_benotes_domain_model_notes.gif',
-		'sortby' => 'sorting'
+		'sortby' => 'sorting',
+	        'security' => [
+	             'ignorePageTypeRestriction' => true
+	        ],
 	],
 	'interface' => [
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, crdate, title, bodytext, public, cruser, cruser_id, category',
