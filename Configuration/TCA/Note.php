@@ -130,7 +130,7 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 				'cols' => 40,
 				'rows' => 15,
 				'eval' => 'trim',
-				'required' = true,
+				'required' => true,
 				/*'options' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
 				'wizards' => [
 					'RTE' => [
