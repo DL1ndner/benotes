@@ -5,7 +5,7 @@ namespace Dl\Benotes\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2014
+ *  (c) 2023
  *
  *  All rights reserved
  *
@@ -53,7 +53,7 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
  * NoteController
  */
 #[Controller]
-class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+final class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	public function __construct(
          protected readonly ModuleTemplateFactory $moduleTemplateFactory,
