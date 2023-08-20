@@ -37,6 +37,7 @@ return [
         'iconIdentifier' => 'notes',
         'navigationComponent' => 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
         'labels' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf',
+        'extensionName' => 'Benotes',
         'controllerActions' => [
             NoteController::class => [
                 'list',
