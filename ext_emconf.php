@@ -40,6 +40,11 @@ $EM_CONF[$_EXTKEY] = array(
 		'suggests' => array(
 		),
 	),
+	'autoload' => [
+        'psr-4' => [
+            'Dl\\Benotes\\' => 'Classes',
+        ],
+    ],
 );
 
 ?>
