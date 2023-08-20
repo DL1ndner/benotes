@@ -1,5 +1,5 @@
 <?php
-namespace Del\Benotes\Controller;
+namespace Dl\Benotes\Controller;
 
 /***************************************************************
  *
