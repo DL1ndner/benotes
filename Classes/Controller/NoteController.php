@@ -32,6 +32,7 @@ use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use Symfony\Component\Mime\Address;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\MailMessage;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\Mailer;
@@ -101,7 +102,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return string
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $pids
 	 */
-	public function listAction() {
+	// use Psr\Http\Message\ResponseInterface
+	public function listAction(): ResponseInterface
+	{
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
     		}
@@ -127,7 +130,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return string
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $pids
 	 */
-	public function listPrivateAction() {
+	public function listPrivateAction(): ResponseInterface
+	{
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
 		}
