@@ -119,7 +119,12 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			'paginator' => $paginator,
 			'pagination' => $pagination,
 		]);
-		$this->view->assign('notes', $notes);		
+		$this->view->assign('notes', $notes);	
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+		
 	}
 	
 	
@@ -147,7 +152,11 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			'pagination' => $pagination,
 		]);
 		$this->view->assign('notes', $notes);
-		
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 	
 
@@ -157,10 +166,15 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @param \Dl\Benotes\Domain\Model\Note $note
 	 * @return void
 	 */
-	public function showAction(\Dl\Benotes\Domain\Model\Note $note) {
+	public function showAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
+	{
 				
 		$this->view->assign('note', $note);
-		
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 		
 	}
 	public function findCurrent() {
@@ -174,14 +188,19 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newNote
 	 * @return void
 	 */
-	public function newAction(\Dl\Benotes\Domain\Model\Note $newNote = NULL) {
+	public function newAction(\Dl\Benotes\Domain\Model\Note $newNote = NULL): ResponseInterface
+	{
 		$this->view->assign('newNote', $newNote);
 		$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		$this->view->assign('cruser',$currentUserUid);
 		
 		$category = $this->categoryRepository->findByCruser($cruser);
 		$this->view->assign('category',$category);
-		
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 	
 	
@@ -193,7 +212,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newNote
 	 * @return void
 	 */
-	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote) {
+	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote): ResponseIbterface
+	{
 		$this->noteRepository->add($newNote);
 		$category = $this->categoryRepository->findByCruser($cruser);
 		$this->view->assign('category',$category);
@@ -203,7 +223,11 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		
 		$isitpublic = $newNote->getPublic();
 		$this->view->assign('public',$public);
-		
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		
 		// if note is public, send message to recipients defined by typoscript
@@ -248,10 +272,16 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * TYPO3\CMS\Extbase\Annotation\IgnoreValidation $note
 	 * @return void
 	 */
-	public function editAction(\Dl\Benotes\Domain\Model\Note $note) {
+	public function editAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
+	{
 		$this->view->assign('note', $note);
 		$category = $this->categoryRepository->findAll();
 		$this->view->assign('category',$category);
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 
 	/**
@@ -260,10 +290,16 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @param \Dl\Benotes\Domain\Model\Note $note
 	 * @return void
 	 */
-	public function updateAction(\Dl\Benotes\Domain\Model\Note $note) {
+	public function updateAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
+	{
 		$this->noteRepository->update($note);
 		$category = $this->categoryRepository->findAll();
 		$this->view->assign('category',$category);
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 		$isitpublic = $note->getPublic();
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		// if note is public, send message to recipients defined by typoscript
@@ -306,10 +342,16 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @param \Dl\Benotes\Domain\Model\Note $note
 	 * @return void
 	 */
-	public function deleteAction(\Dl\Benotes\Domain\Model\Note $note) {
+	public function deleteAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
+	{
 		
 		$this->noteRepository->remove($note);
 		$this->redirect('list');
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 
 	/**
