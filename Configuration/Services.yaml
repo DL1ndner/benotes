@@ -9,7 +9,9 @@ services:
     exclude: '../Classes/Domain/Model/*'
 
   Dl\Benotes\\Controller\NoteController:
+    public: true
     tags: ['backend.controller']
 
   Dl\Benotes\\Controller\CategoryController:
+    public: true
     tags: ['backend.controller']
