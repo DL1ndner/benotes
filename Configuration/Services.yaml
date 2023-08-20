@@ -15,3 +15,4 @@ services:
   Dl\Benotes\\Controller\CategoryController:
     public: true
     tags: ['backend.controller']
+    
