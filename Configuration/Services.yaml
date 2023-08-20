@@ -6,4 +6,5 @@ services:
 
   Dl\Benotes\:
     resource: '../Classes/*'
-    exclude: '../Classes/Domain/Model/*'
+
+
