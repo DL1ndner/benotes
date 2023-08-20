@@ -8,9 +8,4 @@ services:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
 
-  Dl\Benotes\\Controller\NoteController:
-    tags: ['backend.controller']
-
-  Dl\Benotes\\Controller\CategoryController:
-    tags: ['backend.controller']
     
