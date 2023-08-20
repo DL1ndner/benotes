@@ -31,6 +31,17 @@ namespace Dl\Benotes\Domain\Repository;
  */
 class NoteRepository extends \TYPO3\CMS\Extbase\Persistence\Repository  {
 
+	/**
+	 * Initialize the repository
+	 *
+	 * @return void
+	 */
+	public function initializeObject() {
+		$querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+		$querySettings->setRespectStoragePage(TRUE);
+		$defaultQuerySettings = $this->createQuery()->getQuerySettings();
+	}
+
 	
 	/**
 	 * Find notes by given pids and author
