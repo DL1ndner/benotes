@@ -44,8 +44,7 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
 /**
  * CategoryController
  */
-#[Controller]
-final class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	public function __construct(
          protected readonly ModuleTemplateFactory $moduleTemplateFactory
