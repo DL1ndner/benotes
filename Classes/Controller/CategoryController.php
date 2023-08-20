@@ -5,7 +5,7 @@ namespace Dl\Benotes\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2014
+ *  (c) 2023
  *
  *  All rights reserved
  *
@@ -30,6 +30,7 @@ use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Attribute\Controller;
@@ -43,7 +44,7 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
  * CategoryController
  */
 #[Controller]
-class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+final class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	public function __construct(
          protected readonly ModuleTemplateFactory $moduleTemplateFactory,
@@ -75,13 +76,19 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * 
 	 * @return void
 	 */
-	public function listAction() {
+	public function listAction(): ResponseInterface 
+	{
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
 		}
 		$categories = $this->categoryRepository->findByCruser($currentCatUserUid);
 		$this->view->assign('title', $title);
 		$this->view->assign('categories', $categories);
+	        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 
 	/**
@@ -90,8 +97,14 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @param \Dl\Benotes\Domain\Model\Category $category
 	 * @return void
 	 */
-	public function showAction(\Dl\Benotes\Domain\Model\Category $category) {
+	public function showAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
+	{
 		$this->view->assign('category', $category);
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 
 	/**
@@ -101,12 +114,17 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newCategory
 	 * @return void
 	 */
-	public function newAction(\Dl\Benotes\Domain\Model\Category $newCategory = NULL) {
+	public function newAction(\Dl\Benotes\Domain\Model\Category $newCategory = NULL): ResponseInterface
+	{
 		$this->view->assign('title', $title);
 		$this->view->assign('newCategory', $newCategory);
 		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		$this->view->assign('cruser',(int)$GLOBALS['BE_USER']->user['uid']);
-	
+	        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 
 	/**
@@ -115,11 +133,16 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @param \Dl\Benotes\Domain\Model\Category $newCategory
 	 * @return void
 	 */
-	public function createAction(\Dl\Benotes\Domain\Model\Category $newCategory) {
+	public function createAction(\Dl\Benotes\Domain\Model\Category $newCategory): ResponseInterface
+	{
 	
 		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		$this->view->assign('cruser',(int)$GLOBALS['BE_USER']->user['uid']);
-		
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 		$this->categoryRepository->add($newCategory);
 		$this->redirect('list');
 	}
@@ -131,8 +154,14 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $category
 	 * @return void
 	 */
-	public function editAction(\Dl\Benotes\Domain\Model\Category $category) {
+	public function editAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
+	{
 		$this->view->assign('category', $category);
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+
 	}
 
 	/**
