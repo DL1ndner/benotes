@@ -28,11 +28,12 @@ use Dl\Benotes\Controller\CategoryController;
 
 
 return [
-    'benotes_notes' => [
+    'user_benotes' => [
         'parent' => 'user',
         'position' => ['before' => '*'],
         'access' => 'user',
-        'workspaces' => 'live',
+        'workspaces' => '*',
+        'standalone' => 1,
         'iconIdentifier' => 'notes',
         'path' => '/module/user/benotes/notes',
         'labels' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf',
@@ -47,20 +48,8 @@ return [
                 'edit', 
                 'update',
                 'delete'
-            ]
-        ],
-    ],
-    'benotes_categories' => [
-        'parent' => 'user',
-        'position' => ['after' => 'benotes_notes'],
-        'access' => 'user',
-        'workspaces' => 'live',
-        'iconIdentifier' => 'categories',
-        'path' => '/module/user/benotes/categories',
-        'labels' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf',
-        'extensionName' => 'benotes',
-        'controllerActions' => [
-            \Dl\Benotes\Controller\CategoryController::class => [
+            ],
+             \Dl\Benotes\Controller\CategoryController::class => [
                 'list',
                 'listPrivate', 
                 'show', 
