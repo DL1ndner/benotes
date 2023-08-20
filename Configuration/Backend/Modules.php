@@ -39,16 +39,6 @@ return [
         'labels' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf',
         'extensionName' => 'benotes',
         'controllerActions' => [
-            \Dl\Benotes\Controller\NoteController::class => [
-                'list',
-                'listPrivate', 
-                'show', 
-                'new',
-                'create',
-                'edit', 
-                'update',
-                'delete'
-            ],
              \Dl\Benotes\Controller\CategoryController::class => [
                 'list',
                 'listPrivate', 
