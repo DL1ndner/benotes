@@ -54,7 +54,7 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
  * NoteController
  */
 #[Controller]
-final class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	public function __construct(
          protected readonly ModuleTemplateFactory $moduleTemplateFactory
