@@ -62,8 +62,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	private ?CategoryRepository $categoryRepository = null;
 	
 	public function __construct(
-         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
-	 private readonly BackendUserRepository $backendUserRepository	
+         protected readonly ModuleTemplateFactory $moduleTemplateFactory
     	 ) {
 	}
 
@@ -76,6 +75,11 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     	{
         	$this->categoryRepository = $categoryRepository;
     	}
+
+	public function ‪injectBackendUserRepository(\‪TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository ‪$backendUserRepository)
+     {
+         $this->backendUserRepository = ‪$backendUserRepository;
+     }
 
 	
 	/**
