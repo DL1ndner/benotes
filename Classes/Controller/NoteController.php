@@ -49,6 +49,7 @@ use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Dl\Benotes\Domain\Repository\NoteRepository;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
+use \TYPO3\CMS\Extbase\Domain\Repository\BackendUserRepository;
 
 /**
  * NoteController
@@ -95,7 +96,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	//protected $backendUserRepository;
 	public function injectBackendUserRepository(BackendUserRepository $backendUserRepository)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->backendUserRepository = $backendUserRepository;
     }
 	
 	
