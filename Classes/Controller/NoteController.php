@@ -50,7 +50,7 @@ use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Dl\Benotes\Domain\Repository\NoteRepository;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
-use \TYPO3\CMS\Extbase\Domain\Repository\BackendUserRepository;
+use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 
 /**
  * NoteController
