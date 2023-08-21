@@ -44,7 +44,8 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator; 
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
+use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Dl\Benotes\Domain\Repository\NoteRepository;
@@ -102,13 +103,26 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$itemsPerPage = $this->settings['itemsPerPage'];
 		$maximumLinks = 10;
 		$currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
-		// temporarily deactivate pagination
-		//$paginator = new \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator($notes, $currentPage, $itemsPerPage);
+		// temporarily deactivate numbered pagination
+		$paginator = new \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator($notes, $currentPage, $itemsPerPage);
 		//$pagination = new \GeorgRinger\NumberedPagination\NumberedPagination($paginator, $maximumLinks);
 		//$this->view->assign('pagination', [
 		//	'paginator' => $paginator,
 		//	'pagination' => $pagination,
 		//]);
+		
+                $pagination = new SlidingWindowPagination(
+                   $paginator,
+                   $maximumLinks
+                );
+
+                $this->view->assign(
+                   'pagination',
+                   [
+        'pagination' => $pagination,
+        'paginator' => $paginator,
+    ]
+);
 		$this->view->assign('notes', $notes);	
 		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
