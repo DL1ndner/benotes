@@ -57,48 +57,26 @@ use \TYPO3\CMS\Extbase\Domain\Repository\BackendUserRepository;
 #[Controller]
 class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
+	private ?NoteRepository $noteRepository = null;
+	
+	private ?CategoryRepository $categoryRepository = null;
+	
 	public function __construct(
-         protected readonly ModuleTemplateFactory $moduleTemplateFactory
+         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+	 private readonly BackendUserRepository $backendUserRepository	
     	 ) {
 	}
 
-	/**
-	 * noteRepository
-	 * 
-	 * @var \Dl\Benotes\Domain\Repository\NoteRepository
-	 * @TYPO3\CMS\Extbase\Annotation\Inject
-	 */
-	//private ?NoteRepository $noteRepository = null;
+    	public function injectNoteRepository(NoteRepository $noteRepository)
+    	{
+        	$this->noteRepository = $noteRepository;
+    	}
+	
+    	public function injectCategoryRepository(CategoryRepository $categoryRepository)
+    	{
+        	$this->categoryRepository = $categoryRepository;
+    	}
 
-    public function injectNoteRepository(NoteRepository $noteRepository)
-    {
-        $this->noteRepository = $noteRepository;
-    }
-	
-	/**
-	 * categoryRepository
-	 * 
-	 * @var \Dl\Benotes\Domain\Repository\CategoryRepository
-	 * @TYPO3\CMS\Extbase\Annotation\Inject
-	 */
-	//private ?CategoryRepository $categoryRepository = null;
-
-    public function injectCategoryRepository(CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-	
-	
-	/**
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\BackendUserRepository
-	 * @TYPO3\CMS\Extbase\Annotation\Inject
-	 */
-	//protected $backendUserRepository;
-	//public function injectBackendUserRepository(BackendUserRepository $backendUserRepository)
-   // {
-    //    $this->backendUserRepository = $backendUserRepository;
-   // }
-	
 	
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
