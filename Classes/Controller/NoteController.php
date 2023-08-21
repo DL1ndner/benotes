@@ -62,7 +62,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	private ?CategoryRepository $categoryRepository = null;
 	
 	public function __construct(
-         protected readonly ModuleTemplateFactory $moduleTemplateFactory
+         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+	 protected readonly BackendUserRepository $backendUserRepository
     	 ) {
 	}
 
@@ -76,10 +77,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         	$this->categoryRepository = $categoryRepository;
     	}
 
-	public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
-     {
-         $this->backendUserRepository = $backendUserRepository;
-     }
+	//public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
+    // {
+     //    $this->backendUserRepository = $backendUserRepository;
+    // }
 
 	
 	/**
@@ -95,6 +96,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
     		}
+		$cruser = $GLOBALS['BE_USER'];
 		$notes = $this->noteRepository->findByCruser($cruser);	
 		$currentPage = '1';
 		$itemsPerPage = $this->settings['itemsPerPage'];
@@ -128,6 +130,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
 		}
+		$cruser = $GLOBALS['BE_USER'];
 		$notes = $this->noteRepository->findPrivateByCruser($cruser);
 		$currentPage = '1';
 		$itemsPerPage = $this->settings['itemsPerPage'];
