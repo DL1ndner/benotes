@@ -37,9 +37,9 @@ class NoteRepository extends \TYPO3\CMS\Extbase\Persistence\Repository  {
 	 * @return void
 	 */
 	public function initializeObject() {
-		$querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
-		$querySettings->setRespectStoragePage(TRUE);
-		$defaultQuerySettings = $this->createQuery()->getQuerySettings();
+		//$querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+		//$querySettings->setRespectStoragePage(TRUE);
+		//$defaultQuerySettings = $this->createQuery()->getQuerySettings();
 	}
 
 	
@@ -60,7 +60,7 @@ class NoteRepository extends \TYPO3\CMS\Extbase\Persistence\Repository  {
 	
 		
 		);
-		return $query->execute();
+		return $query->executeQuery();
 	}
 	
 	
