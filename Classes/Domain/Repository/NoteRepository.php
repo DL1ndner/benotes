@@ -60,7 +60,7 @@ class NoteRepository extends \TYPO3\CMS\Extbase\Persistence\Repository  {
 	
 		
 		);
-		return $query->executeQuery();
+		return $query->execute();
 	}
 	
 	
