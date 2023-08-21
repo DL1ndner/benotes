@@ -97,8 +97,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
     		}
-		$cruser = $GLOBALS['BE_USER'];
-		$notes = $this->noteRepository->findByCruser($cruser);	
+		//$cruser = $GLOBALS['BE_USER'];
+		//$notes = $this->noteRepository->findByCruser($cruser);	
+		$notes = $this->noteRepository->findAll();
 		$currentPage = '1';
 		$itemsPerPage = $this->settings['itemsPerPage'];
 		$maximumLinks = 10;
