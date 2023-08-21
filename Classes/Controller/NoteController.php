@@ -92,8 +92,11 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @var \TYPO3\CMS\Extbase\Domain\Repository\BackendUserRepository
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected $backendUserRepository;
-	
+	//protected $backendUserRepository;
+	public function injectBackendUserRepository(BackendUserRepository $backendUserRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
 	
 	
 	/**
