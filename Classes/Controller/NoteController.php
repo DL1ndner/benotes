@@ -67,7 +67,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @var \Dl\Benotes\Domain\Repository\NoteRepository
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	private ?NoteRepository $noteRepository = null;
+	//private ?NoteRepository $noteRepository = null;
 
     public function injectNoteRepository(NoteRepository $noteRepository)
     {
@@ -80,7 +80,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @var \Dl\Benotes\Domain\Repository\CategoryRepository
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	private ?CategoryRepository $categoryRepository = null;
+	//private ?CategoryRepository $categoryRepository = null;
 
     public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
