@@ -68,9 +68,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	private ?CategoryRepository $categoryRepository = null;
 	
 	public function __construct(
-		private ResponseFactory $factory,
 		protected readonly ModuleTemplateFactory $moduleTemplateFactory,
-		protected readonly BackendUserRepository $backendUserRepository
+		protected readonly BackendUserRepository $backendUserRepository,
+		private ResponseFactory $factory
 	)  
 	{
 	}
@@ -89,6 +89,17 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     // {
      //    $this->backendUserRepository = $backendUserRepository;
     // }
+
+	public function __invoke(RequestInterface $request): ResponseInterface
+	{
+		$moduleTemplate = $this->moduleTemplateFactory->create($request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent( content: 'Hello Backend Module!');
+		$response = $this->factory->createResponse();
+		$response->getBody()->write($moduleTemplate->renderContent());
+                return $response;
+	}
+	
        private function setDocHeader(): void
 	    {
 	        $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
@@ -108,15 +119,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	        );
 	    }
 
-	public function __invoke(RequestInterface $request): ResponseInterface
-	{
-		$moduleTemplate = $this->moduleTemplateFactory->create($request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent( content: 'Hello Backend Module!');
-		$response = $this->factory->createResponse();
-		$response->getBody()->write($moduleTemplate->renderContent());
-                return $response;
-	}
+
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
