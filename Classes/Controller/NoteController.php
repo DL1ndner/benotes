@@ -110,7 +110,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
     		}
-		//$cruser = $GLOBALS['BE_USER'];
+		$cruser = '';
 		//$notes = $this->noteRepository->findByCruser($cruser);	
 		$notes = $this->noteRepository->findBy(['cruser' => 1, 'public' => true]);
 		$currentPage = '1';
