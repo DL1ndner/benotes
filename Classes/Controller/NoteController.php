@@ -105,11 +105,17 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
     	protected function createMenu(): void
     	{
-       		$actions = [
+       		$listPublicNotes = LocalizationUtility::translate('tx_benotes_domain_model_note.publicnotes', 'benotes');
+		$listPrivateNotes = LocalizationUtility::translate('tx_benotes_domain_model_note.privatenotes');
+		$createNote = LocalizationUtility::translate('tx_benotes_domain_model_note.createnote');
+		$listCategories = LocalizationUtility::translate('tx_benotes_domain_model_category.manage');
+		$createCategory = LocalizationUtility::translate('tx_benotes_domain_model_category.create');
+		
+		$actions = [
             		[
 		                'action' => 'list',
 		                'controller' => 'Note',
-		                'label' => $this->LocalizationUtility::translate('tx_benotes_domain_model_note.publicnotes', 'benotes')
+		                'label' => $listPublicNotes
             		],
 			[
 		                'action' => 'listPrivate',
