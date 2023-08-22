@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace Dl\Benotes\Controller;
 
 /***************************************************************
@@ -65,10 +68,11 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	private ?CategoryRepository $categoryRepository = null;
 	
 	public function __construct(
-	 private ResponseFactory $factory,
-         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
-	 protected readonly BackendUserRepository $backendUserRepository
-    	 ) {
+		private ResponseFactory $factory,
+		protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+		protected readonly BackendUserRepository $backendUserRepository
+	)  
+	{
 	}
 
     	public function injectNoteRepository(NoteRepository $noteRepository)
