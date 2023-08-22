@@ -27,6 +27,7 @@ namespace Dl\Benotes\Domain\Repository;
  ***************************************************************/
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -54,7 +55,6 @@ class NoteRepository extends Repository  {
 	public function findByCruser($cruser): QueryResultInterface 
 	{
 		$query = $this->createQuery();
-      		$query->getQuerySettings()->setRespectStoragePage(true);
 		$query->setOrderings(array(
 			'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
 			'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
