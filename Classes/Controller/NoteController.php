@@ -96,59 +96,6 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      //    $this->backendUserRepository = $backendUserRepository;
     // }
 	
-
-	public function __invoke(RequestInterface $request): ResponseInterface
-	{
-		$moduleTemplate = $this->moduleTemplateFactory->create($request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent( content: 'Hello Backend Module!');
-		$response = $this->factory->createResponse();
-		$response->getBody()->write($moduleTemplate->renderContent());
-                return $response;
-	}
-	
-       private function setDocHeader(): void
-	    {
-	        $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
-	        $dropDownButton = $buttonBar->makeDropDownButton()
-	            ->setLabel('Dropdown')
-	            ->setTitle('Save')
-	            ->setIcon($this->iconFactory->getIcon('actions-heart'))
-	            ->addItem(
-	                GeneralUtility::makeInstance(DropDownItem::class)
-	                    ->setLabel('Item')
-	                    ->setHref('#')
-	            );
-	        $buttonBar->addButton(
-	            $dropDownButton,
-	            ButtonBar::BUTTON_POSITION_RIGHT,
-	            2
-	        );
-	    }
-
-	protected function createMenu(): void
-    {
-        $actions = [
-            	[
-                	'action' => 'list',
-                	'controller' => 'Note',
-                	'label' => $this->translate('tx_benotes_domain_model_note.publicnotes')
-            	],
-		 [
-                	'action' => 'listPrivate',
-                	'controller' => 'Note',
-                	'label' => $this->translate('tx_benotes_domain_model_note.privatenotes')
-            	],
-		[
-                	'action' => 'list',
-                	'controller' => 'Category',
-                	'label' => $this->translate('tx_benotes_domain_model_category.list')
-            	],
-        ];
-        
-        $this->createMenuActions($actions);
-    }
-
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
@@ -191,11 +138,6 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		   	 ]
 		);
 		$this->view->assign('notes', $notes);	
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
-		
 	}
 	
 	
