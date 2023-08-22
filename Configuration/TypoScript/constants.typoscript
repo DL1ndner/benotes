@@ -2,11 +2,11 @@
 module.tx_benotes {
 	view {
 		# cat=module.tx_benotes/file; type=string; label=Path to template root (BE)
-		templateRootPath = EXT:benotes/Resources/Private/Backend/Templates/
+		templateRootPath = EXT:benotes/Resources/Private/Templates/
 		# cat=module.tx_benotes/file; type=string; label=Path to template partials (BE)
-		partialRootPath = EXT:benotes/Resources/Private/Backend/Partials/
+		partialRootPath = EXT:benotes/Resources/Private/Partials/
 		# cat=module.tx_benotes/file; type=string; label=Path to template layouts (BE)
-		layoutRootPath = EXT:benotes/Resources/Private/Backend/Layouts/
+		layoutRootPath = EXT:benotes/Resources/Private/Layouts/
 	}
 	persistence {
 		# cat=module.tx_benotes//a; type=string; label=Default storage PID
