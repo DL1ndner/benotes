@@ -45,7 +45,7 @@ class NoteRepository extends Repository  {
 		//$defaultQuerySettings = $this->createQuery()->getQuerySettings();
 	}
 
-	public function findBy($cruser, array $orderBy = crdate, int $limit = null, int $offset = null): QueryResultInterface
+	public function findBy(['cruser' => 1, 'public' => true]): QueryResultInterface
 	{
 	}
 	/**
