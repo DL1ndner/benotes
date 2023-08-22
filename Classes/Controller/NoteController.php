@@ -82,12 +82,6 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         	$this->modulePrefix = 'tx_benotes_user_benotesnotes';
         	$this->noteRepository = $noteRepository;
         	$this->categoryRepository = $categoryRepository;
-        
-        	//
-       		// Define storage pid
-        	$querySettings = $this->noteRepository->createQuery()->getQuerySettings();
-        	$querySettings->setStoragePageIds([$this->pageUid]);
-       		$this->noteRepository->setDefaultQuerySettings($querySettings);
    	}
 
     	public function injectNoteRepository(NoteRepository $noteRepository)
