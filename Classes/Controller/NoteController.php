@@ -109,7 +109,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
             		[
 		                'action' => 'list',
 		                'controller' => 'Note',
-		                'label' => $this->\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_benotes_domain_model_note.publicnotes', 'benotes')
+		                'label' => $this->LocalizationUtility::translate('tx_benotes_domain_model_note.publicnotes', 'benotes')
             		],
 			[
 		                'action' => 'listPrivate',
