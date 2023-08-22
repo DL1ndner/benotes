@@ -54,8 +54,8 @@ use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownItem;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
-use \TYPO3\CMS\Extbase\Utility\LocalizationUtility
-use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
+use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Dl\Benotes\Domain\Repository\NoteRepository;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
