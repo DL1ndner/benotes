@@ -6,6 +6,33 @@
 		<f:if condition="{docHeader.enabled}">
 			<f:render partial="DocHeader" arguments="{docHeader: docHeader}" />
 		</f:if>
+		<div class="module">
+		<div class="module-docheader t3js-module-docheader">
+			<div class="module-docheader-bar module-docheader-bar-navigation t3js-module-docheader-bar t3js-module-docheader-bar-navigation row">
+				<div class="module-docheader-bar-column-left col-3">
+					<f:be.buttons.csh />
+					<f:be.menus.actionMenu additionalAttributes="{class: 'form-select form-select-sm t3-js-jumpMenuBox'}">
+						<f:be.menus.actionMenuItem label="{f:translate(key: 'tx_benotes_domain_model_note.publicnotes')}" action="list" controller="Note" />
+						<f:be.menus.actionMenuItem label="{f:translate(key: 'tx_benotes_domain_model_note.privatenotes')}" action="listPrivate" controller="Note" />
+						<f:be.menus.actionMenuItem label="{f:translate(key: 'tx_benotes_domain_model_note.createnote')}" action="new" controller="Note" />
+						<f:be.menus.actionMenuItem label="{f:translate(key: 'tx_benotes_domain_model_category.create')}" action="new" controller="Category" />
+						<f:be.menus.actionMenuItem label="{f:translate(key: 'tx_benotes_domain_model_category.manage')}" action="list" controller="Category" />
+					</f:be.menus.actionMenu>
+				</div>
+				<div class="module-docheader-bar-column-right col-9">
+				</div>
+			</div>
+			<div class="module-docheader-bar module-docheader-bar-buttons t3js-module-docheader-bar t3js-module-docheader-bar-buttons">
+				<div class="module-docheader-bar-column-left">
+
+				</div>
+				<div class="module-docheader-bar-column-right">
+				</div>
+			</div>
+
+		</div>
+		
+	</div>
 		<div class="module-body t3js-module-body">
 			
 			<f:render section="Content" />
