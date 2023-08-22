@@ -29,14 +29,14 @@ namespace Dl\Benotes\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Backend\View\BackendTemplateView;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
-use TYPO3\CMS\Core\Imaging\Icon;
 use Symfony\Component\Mime\Address;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Http\ResponseFactory;
 use TYPO3\CMS\Core\MailMessage;
 use TYPO3\CMS\Core\Mail\FluidEmail;
@@ -54,10 +54,10 @@ use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownItem;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Dl\Benotes\Domain\Repository\NoteRepository;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
-use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 
 /**
  * NoteController
@@ -126,6 +126,28 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	        );
 	    }
 
+	protected function createMenu(): void
+    {
+        $actions = [
+            	[
+                	'action' => 'list',
+                	'controller' => 'Note',
+                	'label' => $this->translate('tx_benotes_domain_model_note.publicnotes')
+            	],
+		 [
+                	'action' => 'listPrivate',
+                	'controller' => 'Note',
+                	'label' => $this->translate('tx_benotes_domain_model_note.privatenotes')
+            	],
+		[
+                	'action' => 'list',
+                	'controller' => 'Category',
+                	'label' => $this->translate('tx_benotes_domain_model_category.list')
+            	],
+        ];
+        
+        $this->createMenuActions($actions);
+    }
 
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
