@@ -99,7 +99,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     		}
 		//$cruser = $GLOBALS['BE_USER'];
 		//$notes = $this->noteRepository->findByCruser($cruser);	
-		$notes = $this->noteRepository->findAll();
+		$notes = $this->noteRepository->findBy(['cruser' => 1, 'public' => true]);
 		$currentPage = '1';
 		$itemsPerPage = $this->settings['itemsPerPage'];
 		$maximumLinks = 10;
@@ -113,17 +113,17 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		//]);
 		
                 $pagination = new SlidingWindowPagination(
-                   $paginator,
-                   $maximumLinks
+                   	$paginator,
+                   	$maximumLinks
                 );
 
                 $this->view->assign(
-                   'pagination',
-                   [
-        'pagination' => $pagination,
-        'paginator' => $paginator,
-    ]
-);
+                   	'pagination',
+                  	 [
+			        'pagination' => $pagination,
+			        'paginator' => $paginator,
+		   	 ]
+		);
 		$this->view->assign('notes', $notes);	
 		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
