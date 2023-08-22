@@ -1,0 +1,37 @@
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th class="header_date"><f:format.date format="d-m-Y H:i">@{note.crdate}</f:format.date>, </th>
+			<th class="header_author">{note.cruser.username}</th>
+			<th class="header_cat">{note.category.title}</th>
+			<th class="header_edit">
+				<f:link.action action="edit" arguments="{note : note}"  class="btn btn-default" title="{f:translate(key: 'tx_benotes_domain_model_note.editnote')}"><core:icon identifier="actions-document-open"/></f:link.action>
+			</th>
+			<th class="header_delete">
+				<a href="{f:uri.action(action:'delete', arguments:'{note : note}')}" class="btn btn-default t3js-modal-trigger" title="{f:translate(key: 'tx_benotes_domain_model_note.delete')}" data-title="{note.title} löschen?" data-content="Bisch sicher?" data-severity="warning" data-button-close-text="Abbrechen" data-button-ok-text="Löschen">
+					<core:icon identifier="actions-delete" size="small" alternativeMarkupIdentifier="inline" />
+				</a>	
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="5"><h2>{note.title}</h2></td>
+		</tr>
+		<f:if condition="{note.public}==1">
+  			<f:then>
+    				<tr class="list_public_notes">
+  			</f:then>
+  			<f:else>
+   				 <tr class="list_private_notes">
+    			</f:else>
+		</f:if>
+		<tr>
+			<td class="list_body" colspan="5">
+				<f:format.html>{note.bodytext}</f:format.html>
+			</td>	
+		</tr>
+	</tbody>
+</table>
