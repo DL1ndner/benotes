@@ -22,7 +22,7 @@
 				</f:for>
 			</tbody>
 		</table>
-		<f:comment><f:render partial="Note/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, actionName: 'list'}" /></f:comment>
+		<f:render partial="Note/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, actionName: 'list'}" />
 
 	<div>
 	<f:link.action action="new" class="btn btn-primary" title="{f:translate(key: 'tx_benotes_domain_model_note.newnote')}"><core:icon identifier="actions-add" size="small" alternativeMarkupIdentifier="inline" /><f:translate key="tx_benotes_domain_model_note.newnote"/></f:link.action>
