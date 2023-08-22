@@ -1,12 +1,15 @@
-<html
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    data-namespace-typo3-fluid="true"
->
+<html xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+	  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
 
-<f:layout name="Module" />
+	<div class="module {moduleClass}" data-module-id="{moduleId}" data-module-name="{moduleName}">
+		<f:if condition="{docHeader.enabled}">
+			<f:render partial="DocHeader" arguments="{docHeader: docHeader}" />
+		</f:if>
+		<div class="module-body t3js-module-body">
+			
+			<f:render section="Content" />
+		</div>
+	</div>
 
-	<f:section name="Content">
-		<h1>Hello Backend!</h1>
-	</f:section>
-
-
+</html>
