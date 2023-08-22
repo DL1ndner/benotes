@@ -32,6 +32,7 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use Symfony\Component\Mime\Address;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\MailMessage;
 use TYPO3\CMS\Core\Mail\FluidEmail;
