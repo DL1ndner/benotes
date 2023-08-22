@@ -95,7 +95,46 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     // {
      //    $this->backendUserRepository = $backendUserRepository;
     // }
-	
+	protected function initializeAction()
+    	{
+	        parent::initializeAction();
+	        $this->createMenu();
+	      //  $this->createButtons();
+    	}
+
+    	protected function createMenu(): void
+    	{
+       		$actions = [
+            		[
+		                'action' => 'list',
+		                'controller' => 'Note',
+		                'label' => $this->translate('tx_benotes_domain_model_note.publicnotes')
+            		],
+			[
+		                'action' => 'listPrivate',
+		                'controller' => 'Note',
+		                'label' => $this->translate('tx_benotes_domain_model_note.privatenotes')
+            		],
+			[
+		                'action' => 'new',
+		                'controller' => 'Note',
+		                'label' => $this->translate('tx_benotes_domain_model_note.createnote')
+            		],
+			[
+		                'action' => 'list',
+		                'controller' => 'Category',
+		                'label' => $this->translate('tx_benotes_domain_model_category.manage')
+            		],
+			[
+		                'action' => 'new',
+		                'controller' => 'Category',
+		                'label' => $this->translate('tx_benotes_domain_model_category.create')
+            		],
+        	];
+        
+       		$this->createMenuActions($actions);
+    	}
+
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
