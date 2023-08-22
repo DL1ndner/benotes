@@ -96,59 +96,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     // {
      //    $this->backendUserRepository = $backendUserRepository;
     // }
-	protected function initializeAction()
-    	{
-	        parent::initializeAction();
-	        $this->createMenu();
-	      //  $this->createButtons();
-    	}
-	private function setDocHeader(string $active) {
-	    $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
-	    $list = $buttonBar->makeLinkButton()
-	        ->setHref('<uri-builder-path>')
-	        ->setTitle('A Title')
-	        ->setShowLabelText('Link')
-	        ->setIcon($this->moduleTemplate->getIconFactory()->getIcon('actions-extension-import', Icon::SIZE_SMALL));
-	    $buttonBar->addButton($list, ButtonBar::BUTTON_POSITION_LEFT, 1);
-	}
-    	protected function createMenu(): void
-    	{
-       		$listPublicNotes = LocalizationUtility::translate('tx_benotes_domain_model_note.publicnotes', 'benotes');
-		$listPrivateNotes = LocalizationUtility::translate('tx_benotes_domain_model_note.privatenotes', 'benotes');
-		$createNote = LocalizationUtility::translate('tx_benotes_domain_model_note.createnote', 'benotes');
-		$listCategories = LocalizationUtility::translate('tx_benotes_domain_model_category.manage', 'benotes');
-		$createCategory = LocalizationUtility::translate('tx_benotes_domain_model_category.create', 'benotes');
-		
-		$actions = [
-            		[
-		                'action' => 'list',
-		                'controller' => 'Note',
-		                'label' => $listPublicNotes
-            		],
-			[
-		                'action' => 'listPrivate',
-		                'controller' => 'Note',
-		                'label' => $listPrivateNotes
-            		],
-			[
-		                'action' => 'new',
-		                'controller' => 'Note',
-		                'label' => $createNote
-            		],
-			[
-		                'action' => 'list',
-		                'controller' => 'Category',
-		                'label' => $listCategories
-            		],
-			[
-		                'action' => 'new',
-		                'controller' => 'Category',
-		                'label' => $createCategory
-            		],
-        	];
-        
-       		$this->createMenuActions($actions);
-    	}
+	
 
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
