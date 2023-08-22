@@ -120,22 +120,22 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			[
 		                'action' => 'listPrivate',
 		                'controller' => 'Note',
-		                'label' => $this->translate('tx_benotes_domain_model_note.privatenotes')
+		                'label' => $listPrivateNotes
             		],
 			[
 		                'action' => 'new',
 		                'controller' => 'Note',
-		                'label' => $this->translate('tx_benotes_domain_model_note.createnote')
+		                'label' => $createNote
             		],
 			[
 		                'action' => 'list',
 		                'controller' => 'Category',
-		                'label' => $this->translate('tx_benotes_domain_model_category.manage')
+		                'label' => $listCategories
             		],
 			[
 		                'action' => 'new',
 		                'controller' => 'Category',
-		                'label' => $this->translate('tx_benotes_domain_model_category.create')
+		                'label' => $createCategory
             		],
         	];
         
