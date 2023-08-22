@@ -48,6 +48,7 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder as UriBuilderBackend;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownItem;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
