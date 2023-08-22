@@ -44,6 +44,8 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
+use TYPO3\CMS\Backend\Template\Components\ButtonBar;
+use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownItem;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
@@ -82,7 +84,24 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     // {
      //    $this->backendUserRepository = $backendUserRepository;
     // }
-
+       private function setDocHeader(): void
+	    {
+	        $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+	        $dropDownButton = $buttonBar->makeDropDownButton()
+	            ->setLabel('Dropdown')
+	            ->setTitle('Save')
+	            ->setIcon($this->iconFactory->getIcon('actions-heart'))
+	            ->addItem(
+	                GeneralUtility::makeInstance(DropDownItem::class)
+	                    ->setLabel('Item')
+	                    ->setHref('#')
+	            );
+	        $buttonBar->addButton(
+	            $dropDownButton,
+	            ButtonBar::BUTTON_POSITION_RIGHT,
+	            2
+	        );
+	    }
 	
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
