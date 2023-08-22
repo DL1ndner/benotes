@@ -102,7 +102,15 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	        $this->createMenu();
 	      //  $this->createButtons();
     	}
-
+	private function setDocHeader(string $active) {
+	    $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+	    $list = $buttonBar->makeLinkButton()
+	        ->setHref('<uri-builder-path>')
+	        ->setTitle('A Title')
+	        ->setShowLabelText('Link')
+	        ->setIcon($this->moduleTemplate->getIconFactory()->getIcon('actions-extension-import', Icon::SIZE_SMALL));
+	    $buttonBar->addButton($list, ButtonBar::BUTTON_POSITION_LEFT, 1);
+	}
     	protected function createMenu(): void
     	{
        		$listPublicNotes = LocalizationUtility::translate('tx_benotes_domain_model_note.publicnotes', 'benotes');
