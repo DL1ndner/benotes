@@ -1,7 +1,8 @@
-<f:section name="Subject">Neue Mitteilung im Backend: {note.title}</f:section>
+<f:layout name="SystemEmail" />
+<f:section name="Subject">Mitteilung {note.title} im Backend geändert</f:section>
 <f:section name="Main">
   <h4>Hallo,</h4>
-  <p>{note.cruser.username} hat die Mitteilung "{note.title}" erstellt:</p>
+  <p>jemand hat die Mitteilung "{note.title}" geändert:</p>
   <quote>
     <f:format.html>
       <f:format.crop maxCharacters="200" append="...">

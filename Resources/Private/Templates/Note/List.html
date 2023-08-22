@@ -1,19 +1,11 @@
 {namespace core = TYPO3\CMS\Core\ViewHelpers}
-<f:layout name="Default" />
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true" lang="en">
+<f:layout name="Backend" />
 <f:section name="Content">
-	<h1><f:translate key="tx_benotes_domain_model_note.publicnotes" /></h1>
-		<f:flashMessages />
+	<modules:be.header header="{f:translate(key: 'tx_benotes_domain_model_note.publicnotes')}" />
+	<f:flashMessages />
+
 		<table class="table table-striped table-hover" >
 			<thead>
 				<tr >

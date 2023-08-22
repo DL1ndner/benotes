@@ -13,16 +13,15 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="content">
-<h1><f:translate key="tx_benotes_domain_model_note.newnote"/></h1>
+<h1><f:translate key="tx_benotes_domain_model_category.create"/></h1>
 
 <f:flashMessages />
 
 <f:render partial="FormErrors" />
 
-<f:form action="create"  name="newNote" object="{newNote}" onsubmit="rteMove()">
+<f:form action="create"  name="newCategory" object="{newCategory}">
+<f:render partial="Category/FormFields" arguments="{_all}"/>
 
-
-<f:render partial="Note/FormFields" arguments="{_all}"/>
-	<f:form.submit class="btn btn-primary" value="{f:translate(key: 'tx_benotes_domain_model_note.savenew')}" />
+	<f:form.submit class="btn btn-primary" value="{f:translate(key: 'tx_benotes_domain_model_category.savenew')}" />
 </f:form>
 </f:section>
