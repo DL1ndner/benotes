@@ -25,11 +25,14 @@ namespace Dl\Benotes\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * The repository for Notes
  */
-class NoteRepository extends \TYPO3\CMS\Extbase\Persistence\Repository  {
+class NoteRepository extends Repository  {
 
 	/**
 	 * Initialize the repository
