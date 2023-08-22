@@ -54,6 +54,7 @@ class NoteRepository extends Repository  {
 	 */
 	public function findByCruser($cruser) {
 		$query = $this->createQuery();
+      		$query->getQuerySettings()->setRespectStoragePage(true);
 		$query->setOrderings(array(
 			'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
 			'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
