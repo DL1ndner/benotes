@@ -45,16 +45,14 @@ class NoteRepository extends Repository  {
 		//$defaultQuerySettings = $this->createQuery()->getQuerySettings();
 	}
 
-	public function findBy(['cruser' => 1, 'public' => true]): QueryResultInterface
-	{
-	}
 	/**
 	 * Find notes by given pids and author
 	 *
 	 * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUser $cruser The author
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
-	public function findByCruser($cruser) {
+	public function findByCruser($cruser): QueryResultInterface 
+	{
 		$query = $this->createQuery();
       		$query->getQuerySettings()->setRespectStoragePage(true);
 		$query->setOrderings(array(
@@ -63,8 +61,6 @@ class NoteRepository extends Repository  {
 		));
 		$query->matching(
 			$query->equals('public', 1)
-	
-		
 		);
 		return $query->execute();
 	}
