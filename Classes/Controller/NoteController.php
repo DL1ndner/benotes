@@ -104,7 +104,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $pids
 	 */
 	// use Psr\Http\Message\ResponseInterface
-	public function listAction()
+	public function listAction(): ResponseInterface
 	{
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
@@ -138,7 +138,13 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		   	 ]
 		);
 		$this->view->assign('notes', $notes);	
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent($this->view->render());
+                return $this->htmlResponse($moduleTemplate->renderContent());
+		
 	}
+	
 	
 	
 	/**
