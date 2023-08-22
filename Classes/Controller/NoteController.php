@@ -111,8 +111,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			return '';
     		}
 		$cruser = '';
-		//$notes = $this->noteRepository->findByCruser($cruser);	
-		$notes = $this->noteRepository->findBy(['cruser' => 1, 'public' => true]);
+		$notes = $this->noteRepository->findByCruser($cruser);	
+		//$notes = $this->noteRepository->findBy(['cruser' => 1, 'public' => true]);
 		$currentPage = '1';
 		//$itemsPerPage = $this->settings['itemsPerPage'];
 		$itemsPerPage = 10;
