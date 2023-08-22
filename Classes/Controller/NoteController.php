@@ -73,7 +73,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		protected TypoScriptService $typoScriptService,
 		protected UriBuilderBackend $uriBuilderBackend,
 		protected readonly ModuleTemplateFactory $moduleTemplateFactory,
-		protected readonly BackendUserRepository $backendUserRepository,
+		//protected readonly BackendUserRepository $backendUserRepository,
 		private ResponseFactory $factory
 	)  
 	{
@@ -91,10 +91,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         	$this->categoryRepository = $categoryRepository;
     	}
 
-	//public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
-    // {
-     //    $this->backendUserRepository = $backendUserRepository;
-    // }
+	public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
+    {
+        $this->backendUserRepository = $backendUserRepository;
+    }
 	
 
 	/**
