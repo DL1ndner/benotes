@@ -1,0 +1,14 @@
+<f:section name="Subject">Neue Mitteilung im Backend: {note.title}</f:section>
+<f:section name="Main">
+  <h4>Hallo,</h4>
+  <p>{note.cruser.username} hat die Mitteilung "{note.title}" erstellt:</p>
+  <quote>
+    <f:format.html>
+      <f:format.crop maxCharacters="200" append="...">
+        {note.bodytext}
+      </f:format.crop>
+   </f:format.html>
+  </quote>
+  <p>Die ganze Mitteilung findest Du im <a href="{baseUri}/typo3">Backend von {typo3.sitename}</a>.</p>
+
+</f:section>
