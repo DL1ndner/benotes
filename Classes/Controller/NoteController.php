@@ -104,7 +104,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $pids
 	 */
 	// use Psr\Http\Message\ResponseInterface
-	public function listAction(): ResponseInterface
+	public function listAction()
 	{
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
