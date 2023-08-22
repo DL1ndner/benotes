@@ -45,7 +45,9 @@ class NoteRepository extends Repository  {
 		//$defaultQuerySettings = $this->createQuery()->getQuerySettings();
 	}
 
-	
+	public function findBy($cruser, array $orderBy = crdate, int $limit = null, int $offset = null): QueryResultInterface
+	{
+	}
 	/**
 	 * Find notes by given pids and author
 	 *
