@@ -46,7 +46,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Attribute\Controller;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder as UriBuilderBackend;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownItem;
@@ -69,12 +69,32 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	private ?CategoryRepository $categoryRepository = null;
 	
 	public function __construct(
+		protected TypoScriptService $typoScriptService,
+		protected UriBuilderBackend $uriBuilderBackend,
 		protected readonly ModuleTemplateFactory $moduleTemplateFactory,
 		protected readonly BackendUserRepository $backendUserRepository,
 		private ResponseFactory $factory
 	)  
 	{
-	}
+		parent::__construct(
+          		$typoScriptService,
+            		$uriBuilderBackend,
+            		$moduleTemplateFactory,
+			$backendUserRepository,
+			$factory
+       		);
+		 $this->moduleName = 'benotes_note';
+        
+        	$this->modulePrefix = 'tx_benotes_user_benotesnotes';
+        	$this->noteRepository = $noteRepository;
+        	$this->categoryRepository = $categoryRepository;
+        
+        	//
+       		// Define storage pid
+        	$querySettings = $this->noteRepository->createQuery()->getQuerySettings();
+        	$querySettings->setStoragePageIds([$this->pageUid]);
+       		$this->noteRepository->setDefaultQuerySettings($querySettings);
+   	}
 
     	public function injectNoteRepository(NoteRepository $noteRepository)
     	{
@@ -90,6 +110,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     // {
      //    $this->backendUserRepository = $backendUserRepository;
     // }
+	
 
 	public function __invoke(RequestInterface $request): ResponseInterface
 	{
