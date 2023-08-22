@@ -78,10 +78,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	)  
 	{
 	 	$this->moduleName = 'benotes_note';
-        
-        	$this->modulePrefix = 'tx_benotes_user_benotesnotes';
-        	$this->noteRepository = $noteRepository;
-        	$this->categoryRepository = $categoryRepository;
+               	$this->modulePrefix = 'tx_benotes_user_benotesnotes';
    	}
 
     	public function injectNoteRepository(NoteRepository $noteRepository)
