@@ -101,7 +101,16 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	            2
 	        );
 	    }
-	
+
+	public function __invoke(RequestInterface $request): ResponseInterface
+	{
+		$moduleTemplate = $this->moduleTemplateFactory->create($request);
+                // Adding title, menus, buttons, etc. using $moduleTemplate ...
+                $moduleTemplate->setContent( content: 'Hello Backend Module!');
+		$response = $this->factory->createResponse();
+		$response->getBody()->write($moduleTemplate->renderContent());
+                return $response;
+	}
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
