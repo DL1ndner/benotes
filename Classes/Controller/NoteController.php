@@ -77,14 +77,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		private ResponseFactory $factory
 	)  
 	{
-		parent::__construct(
-          		$typoScriptService,
-            		$uriBuilderBackend,
-            		$moduleTemplateFactory,
-			$backendUserRepository,
-			$factory
-       		);
-		 $this->moduleName = 'benotes_note';
+	 	$this->moduleName = 'benotes_note';
         
         	$this->modulePrefix = 'tx_benotes_user_benotesnotes';
         	$this->noteRepository = $noteRepository;
