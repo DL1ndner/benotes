@@ -63,20 +63,17 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	//protected $categoryRepository;
 	private ?CategoryRepository $categoryRepository = null;
 
-    public function injectCategoryRepository(CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-	
-	public function injectCategoryRepository(CategoryRepository $categoryRepository)
+   	public function injectCategoryRepository(CategoryRepository $categoryRepository)
     	{
         	$this->categoryRepository = $categoryRepository;
     	}
-
+	
+	
 	public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
-    {
-        $this->backendUserRepository = $backendUserRepository;
-    }
+   	{
+        	$this->backendUserRepository = $backendUserRepository;
+    	}
+	
 	private function getBackendUser(): BackendUserAuthentication
     	{
         	return  $GLOBALS['BE_USER'];
