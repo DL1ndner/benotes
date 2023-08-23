@@ -223,7 +223,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->view->assign('newNote', $newNote);
 		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
-		$this->view->assign('cruser', $currentUserUid);
+		//$this->view->assign('cruser', $currentUserUid);
 		
 		$category = $this->categoryRepository->findByCruser($currentUserUid);
 		$this->view->assign('category',$category);
@@ -251,7 +251,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->view->assign('category',$category);
        
 		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
-		$this->view->assign('cruser', $currentUserUid);
+		//$this->view->assign('cruser', $currentUserUid);
 		
 		$isitpublic = $newNote->getPublic();
 		$this->view->assign('public',$public);
