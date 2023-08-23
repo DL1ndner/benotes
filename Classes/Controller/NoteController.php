@@ -101,15 +101,24 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     	{
         	return  $GLOBALS['BE_USER'];
     	}
-	private function setDocHeader(string $active) {
+		private function setDocHeader(): void
+		{
 			$buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
-			$list = $buttonBar->makeLinkButton()
-				->setHref('<uri-builder-path>')
-				->setTitle('A Title')
-				->setShowLabelText('Link')
-				->setIcon($this->moduleTemplate->getIconFactory()->getIcon('actions-extension-import', Icon::SIZE_SMALL));
-			$buttonBar->addButton($list, ButtonBar::BUTTON_POSITION_LEFT, 1);
-	}
+			$dropDownButton = $buttonBar->makeDropDownButton()
+				->setLabel('Dropdown')
+				->setTitle('Save')
+				->setIcon($this->iconFactory->getIcon('actions-heart'))
+				->addItem(
+					GeneralUtility::makeInstance(DropDownItem::class)
+						->setLabel('Item')
+						->setHref('#')
+				);
+			$buttonBar->addButton(
+				$dropDownButton,
+				ButtonBar::BUTTON_POSITION_RIGHT,
+				2
+			);
+		}
 		
 	
 		/**
