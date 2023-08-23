@@ -25,7 +25,9 @@ namespace Dl\Benotes\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use TYPO3\CMS\Backend\Attribute\Controller;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -44,6 +46,7 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
 /**
  * CategoryController
  */
+#[Controller]
 class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	public function __construct(
