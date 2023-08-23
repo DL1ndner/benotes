@@ -114,7 +114,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			
 			$moduleTemplate->setTitle(
 				$title,
-				$languageService->sL('EXT:examples/Resources/Private/Language/AdminModule/locallang.xlf:module.menu.log');
+				$languageService->sL('EXT:examples/Resources/Private/Language/AdminModule/locallang.xlf:module.menu.log')
 			);
 			return $this->listAction($moduleTemplate);
 		}
