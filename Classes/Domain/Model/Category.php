@@ -63,11 +63,9 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $public = 'FALSE';
 	
 	/**
-  * The creation user from the be_users
-  *
-  * @var \TYPO3\CMS\Extbase\Domain\Model\BackendUser $cruser
-  */
- protected $cruser;
+	 * @var BackendUser|null
+	 */
+	protected ?BackendUser $cruser = null;
 
 
 	/**
@@ -137,23 +135,18 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-     * Returns the cruser
-     *
-     * @return $cruser
-     */
-    public function getCruser() {
-        return $this->cruser;
-    }
+	 * @return BackendUser|null
+	 */
+	public function getCruser(): ?BackendUser
+	{
+	    return $this->cruser;
+	}
 	
-	
-
-    /**
-     * Sets the cruser
-     *
-     * @param int $cruser
-     * @return void
-     */
-    public function setCruser($cruser) {
-		$this->cruser = $cruser;
-    }
+	/**
+	 * @param ?BackendUser $cruser
+	 */
+	public function setCruser(?BackendUser $cruser): void
+	{
+	    $this->cruser = $cruser;
+	}
 }
