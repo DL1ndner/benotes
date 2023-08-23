@@ -98,7 +98,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     }
 	private function getBackendUser(): BackendUserAuthentication
     	{
-        	return  $GLOBALS['BE_USER']->user['uid'];
+        	return  $GLOBALS['BE_USER'];
     	}
 
 	/**
@@ -217,7 +217,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	{
 		$this->view->assign('newNote', $newNote);
 		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
-		$currentUserUid = $this->getBackendUser();
+		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
 		$this->view->assign('cruser',$currentUserUid);
 		
 		$category = $this->categoryRepository->findByCruser($cruser);
