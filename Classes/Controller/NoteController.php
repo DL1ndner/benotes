@@ -331,7 +331,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
                // $moduleTemplate->setContent($this->view->render());
                // return $this->htmlResponse($moduleTemplate->renderContent());
-		return $this->htmlResponse();
+		
 		$isitpublic = $note->getPublic();
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		// if note is public, send message to recipients defined by typoscript
@@ -365,7 +365,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			$this->addFlashMessage('Private Notiz geändert.');
 		}
 
-		$this->redirect('list');
+		return $this->redirect('list');
 	}
 
 	/**
