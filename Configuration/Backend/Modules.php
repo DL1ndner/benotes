@@ -35,7 +35,6 @@ return [
         'workspaces' => 'live',
         'path' => '/module/user/benotes',
         'iconIdentifier' => 'notes',
-        'navigationComponent' => '',
         'labels' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf',
         'extensionName' => 'Benotes',
         'controllerActions' => [
