@@ -123,30 +123,25 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$itemsPerPage = (int)$this->settings['itemsPerPage'];
 		$maximumLinks = 10;
 		$currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
-		// temporarily deactivate numbered pagination
 		$paginator = new \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator($notes, $currentPage, $itemsPerPage);
+		// temporarily deactivate numbered pagination
 		//$pagination = new \GeorgRinger\NumberedPagination\NumberedPagination($paginator, $maximumLinks);
-		//$this->view->assign('pagination', [
-		//	'paginator' => $paginator,
-		//	'pagination' => $pagination,
-		//]);
-		
-                $pagination = new SlidingWindowPagination(
-                   	$paginator,
-                   	$maximumLinks
-                );
+		$pagination = new SlidingWindowPagination(
+            $paginator,
+            $maximumLinks
+        );
 
-                $this->view->assign(
-                   	'pagination',
-                  	 [
-			        'pagination' => $pagination,
-			        'paginator' => $paginator,
-		   	 ]
+        $this->view->assign(
+            'pagination',
+            [
+			    'pagination' => $pagination,
+			    'paginator' => $paginator,
+		   	]
 		);
 		$this->view->assign('notes', $notes);	
-		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-       //return $this->htmlResponse($moduleTemplate->renderContent());
-	   return $this->renderContent();
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        //$moduleTemplate->setContent($this->view->render());
+		return $this->htmlResponse($moduleTemplate->renderContent());
 		
 	}
 	
