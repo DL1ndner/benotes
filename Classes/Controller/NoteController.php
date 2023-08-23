@@ -118,6 +118,15 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			);
 			return $this->listAction($moduleTemplate);
 		}
+		private function setDocHeader(string $active) {
+			$buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+			$list = $buttonBar->makeLinkButton()
+				->setHref('<uri-builder-path>')
+				->setTitle('A Title')
+				->setShowLabelText('Link')
+				->setIcon($this->moduleTemplate->getIconFactory()->getIcon('actions-extension-import', Icon::SIZE_SMALL));
+			$buttonBar->addButton($list, ButtonBar::BUTTON_POSITION_LEFT, 1);
+		}
 	
 		/**
 	 * Render notes by single PID or PID list with numbered_pagination
