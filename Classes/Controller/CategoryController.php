@@ -119,6 +119,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
 	}
+
 	/**
 	 * action new
 	 * 
@@ -128,14 +129,16 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function newAction(\Dl\Benotes\Domain\Model\Category $newCategory = NULL): ResponseInterface
 	{
-		$this->view->assign('title', $title);
+		//$this->view->assign('title', $title);
 		$this->view->assign('newCategory', $newCategory);
+
 		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
 		$this->view->assign('cruser', $currentCatUserUid);
-	        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+
+	    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        // Adding title, menus, buttons, etc. using $moduleTemplate ...
+        $moduleTemplate->setContent($this->view->render());
+        return $this->htmlResponse($moduleTemplate->renderContent());
 
 	}
 
