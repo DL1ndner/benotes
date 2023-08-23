@@ -30,7 +30,7 @@ use Dl\Benotes\Controller\CategoryController;
 return [
     'user_benotes' => [
         'parent' => 'user',
-        'position' => ['before' => '*'],
+        'position' => ['after' => 'user_setup'],
         'access' => 'user',
         'workspaces' => 'live',
         'path' => '/module/user/benotes',
