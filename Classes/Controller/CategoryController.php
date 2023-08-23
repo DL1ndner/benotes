@@ -42,6 +42,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
+use \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 
 /**
  * CategoryController
@@ -68,11 +69,19 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->categoryRepository = $categoryRepository;
     }
 	
-	/**
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\BackendUserRepository
-	 * @TYPO3\CMS\Extbase\Annotation\Inject
-	 */
-	protected $backendUserRepository;
+	public function injectCategoryRepository(CategoryRepository $categoryRepository)
+    	{
+        	$this->categoryRepository = $categoryRepository;
+    	}
+
+	public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
+    {
+        $this->backendUserRepository = $backendUserRepository;
+    }
+	private function getBackendUser(): BackendUserAuthentication
+    	{
+        	return  $GLOBALS['BE_USER'];
+    	}
 
 	/**
 	 * action list
