@@ -29,7 +29,7 @@ namespace Dl\Benotes\Domain\Model;
 /**
  * Note
  */
- 
+use TYPO3\CMS\Beuser\Domain\Model\BackendUser; 
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
@@ -85,12 +85,10 @@ protected $userRepository;
 	 */
 	protected $category;
 
-/**
-  * The creation user from the be_users
-  *
-  * @var \TYPO3\CMS\Extbase\Domain\Model\BackendUser $cruser
-  */
- protected $cruser;
+	/**
+	 * @var BackendUser|null
+	 */
+	protected ?BackendUser $cruser = null;
  
 	
 		
@@ -200,26 +198,23 @@ protected $userRepository;
     $this->crdate = $crdate;
     }
 	
-   /**
-     * Returns the cruser
-     *
-     * @return $cruser
-     */
-    public function getCruser() {
-        return $this->cruser;
-    }
+	/**
+	 * @return BackendUser|null
+	 */
+	public function getCruser(): ?BackendUser
+	{
+	    return $this->cruser;
+	}
 	
-	
+	/**
+	 * @param ?BackendUser $cruser
+	 */
+	public function setCruser(?BackendUser $cruser): void
+	{
+	    $this->cruser = $cruser;
+	}
 
-    /**
-     * Sets the cruser
-     *
-     * @param int $cruser
-     * @return void
-     */
-    public function setCruser($cruser) {
-		$this->cruser = $cruser;
-    }
+   
 	
 	
 }
