@@ -167,7 +167,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$cruser = $GLOBALS['BE_USER'];
 		$notes = $this->noteRepository->findPrivateByCruser($cruser);
 		$currentPage = '1';
-		$itemsPerPage = $this->settings['itemsPerPage'];
+		$itemsPerPage = (int)$this->settings['itemsPerPage'];
 		$maximumLinks = 10;
 		$currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
 		$paginator = new \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator($notes, $currentPage, $itemsPerPage);
