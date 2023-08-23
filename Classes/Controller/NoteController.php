@@ -101,32 +101,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         	return  $GLOBALS['BE_USER'];
     	}
 
-		public function handleRequest(ServerRequestInterface $request): ResponseInterface
-		{
-			$languageService = $GLOBALS['LANG'];
 		
-			$this->menuConfig($request);
-			$moduleTemplate = $this->moduleTemplateFactory->create($request);
-			// setUpDocHeader() is documented below
-			$this->setUpDocHeader($moduleTemplate);
-		
-			$title = $languageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab');
-			
-			$moduleTemplate->setTitle(
-				$title,
-				$languageService->sL('EXT:examples/Resources/Private/Language/AdminModule/locallang.xlf:module.menu.log')
-			);
-			return $this->listAction($moduleTemplate);
-		}
-		private function setDocHeader(string $active) {
-			$buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
-			$list = $buttonBar->makeLinkButton()
-				->setHref('<uri-builder-path>')
-				->setTitle('A Title')
-				->setShowLabelText('Link')
-				->setIcon($this->moduleTemplate->getIconFactory()->getIcon('actions-extension-import', Icon::SIZE_SMALL));
-			$buttonBar->addButton($list, ButtonBar::BUTTON_POSITION_LEFT, 1);
-		}
 	
 		/**
 	 * Render notes by single PID or PID list with numbered_pagination
@@ -169,10 +144,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		   	 ]
 		);
 		$this->view->assign('notes', $notes);	
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+       //return $this->htmlResponse($moduleTemplate->renderContent());
+	   return $this->renderContent();
 		
 	}
 	
