@@ -55,6 +55,7 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Dl\Benotes\Domain\Repository\NoteRepository;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
@@ -95,7 +96,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     {
         $this->backendUserRepository = $backendUserRepository;
     }
-	
+	private function getBackendUser(): BackendUserAuthentication
+    	{
+        	return  $GLOBALS['BE_USER'];
+    	}
 
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
@@ -212,7 +216,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	public function newAction(\Dl\Benotes\Domain\Model\Note $newNote = NULL): ResponseInterface
 	{
 		$this->view->assign('newNote', $newNote);
-		$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
+		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
+		$currentUserUid = $this->getBackendUser();
 		$this->view->assign('cruser',$currentUserUid);
 		
 		$category = $this->categoryRepository->findByCruser($cruser);
