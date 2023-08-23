@@ -223,7 +223,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->view->assign('newNote', $newNote);
 		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
-		//$this->view->assign('cruser', $currentUserUid);
+		$this->view->assign('cruser', $currentUserUid);
 		
 		$category = $this->categoryRepository->findByCruser($currentUserUid);
 		$this->view->assign('category',$category);
@@ -243,7 +243,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newNote
 	 * @return void
 	 */
-	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote): ResponseInterface
+	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote)
 	{
 		$this->noteRepository->add($newNote);
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
@@ -255,10 +255,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		
 		$isitpublic = $newNote->getPublic();
 		$this->view->assign('public',$public);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+               /// $moduleTemplate->setContent($this->view->render());
+                //return $this->htmlResponse($moduleTemplate->renderContent());
 
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		
@@ -322,15 +322,15 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @param \Dl\Benotes\Domain\Model\Note $note
 	 * @return void
 	 */
-	public function updateAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
+	public function updateAction(\Dl\Benotes\Domain\Model\Note $note)
 	{
 		$this->noteRepository->update($note);
 		$category = $this->categoryRepository->findAll();
 		$this->view->assign('category',$category);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+               // $moduleTemplate->setContent($this->view->render());
+               // return $this->htmlResponse($moduleTemplate->renderContent());
 
 		$isitpublic = $note->getPublic();
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
