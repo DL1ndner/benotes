@@ -78,6 +78,11 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         	return  $GLOBALS['BE_USER'];
     	}
 
+	public function findCurrent() {
+		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
+		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
+	}	
+
 	/**
 	 * action list
 	 * 
@@ -88,9 +93,9 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
 		}
-
+		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
 		$categories = $this->categoryRepository->findByCruser($currentCatUserUid);
-		$this->view->assign('title', $title);
+		//$this->view->assign('title', $title);
 		$this->view->assign('categories', $categories);
 	        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
@@ -115,10 +120,6 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
 	}
 
-	public function findCurrent() {
-		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
-		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
-	}
 
 	/**
 	 * action new
