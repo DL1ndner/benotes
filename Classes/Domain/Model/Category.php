@@ -30,7 +30,8 @@ namespace Dl\Benotes\Domain\Model;
  * Category
  */
  
-use TYPO3\CMS\Extbase\Annotation as Extbase;
+ use TYPO3\CMS\Beuser\Domain\Model\BackendUser; 
+ use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
