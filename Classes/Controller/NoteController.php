@@ -322,12 +322,12 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @param \Dl\Benotes\Domain\Model\Note $note
 	 * @return void
 	 */
-	public function updateAction(\Dl\Benotes\Domain\Model\Note $note)
+	public function updateAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
 	{
 		$this->noteRepository->update($note);
 		$category = $this->categoryRepository->findAll();
 		$this->view->assign('category',$category);
-		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
                // $moduleTemplate->setContent($this->view->render());
                // return $this->htmlResponse($moduleTemplate->renderContent());
