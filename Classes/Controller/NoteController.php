@@ -141,7 +141,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->view->assign('notes', $notes);	
 		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
         //$moduleTemplate->setContent($this->view->render());
-		return $this->htmlResponse();
+		return $this->htmlResponse($this->view->render());
 		
 	}
 	
