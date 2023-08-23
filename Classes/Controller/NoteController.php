@@ -118,7 +118,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$notes = $this->noteRepository->findByCruser($cruser);	
 		//$notes = $this->noteRepository->findBy(['cruser' => 1, 'public' => true]);
 		$currentPage = '1';
-		$itemsPerPage = $this->settings['itemsPerPage'];
+		$itemsPerPage = int($this->settings['itemsPerPage']);
 		$maximumLinks = 10;
 		$currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
 		// temporarily deactivate numbered pagination
