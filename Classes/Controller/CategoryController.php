@@ -157,7 +157,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 return $this->htmlResponse($moduleTemplate->renderContent());
 
 		$this->categoryRepository->add($newCategory);
-		$this->redirect('list');
+		return $this->redirect('list');
 	}
 
 	/**
@@ -183,9 +183,10 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @param \Dl\Benotes\Domain\Model\Category $category
 	 * @return void
 	 */
-	public function updateAction(\Dl\Benotes\Domain\Model\Category $category) {
+	public function updateAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
+	{
 		$this->categoryRepository->update($category);
-		$this->redirect('list');
+		return $this->redirect('list');
 	}
 
 	/**
@@ -194,9 +195,10 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @param \Dl\Benotes\Domain\Model\Category $category
 	 * @return void
 	 */
-	public function deleteAction(\Dl\Benotes\Domain\Model\Category $category) {
+	public function deleteAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
+	{
 		$this->categoryRepository->remove($category);
-		$this->redirect('list');
+		return $this->redirect('list');
 	}
 
 	/**
