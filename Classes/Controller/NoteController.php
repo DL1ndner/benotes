@@ -238,7 +238,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newNote
 	 * @return void
 	 */
-	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote): ResponseIbterface
+	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote): ResponseInterface
 	{
 		$this->noteRepository->add($newNote);
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
