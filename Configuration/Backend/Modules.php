@@ -35,7 +35,7 @@ return [
         'workspaces' => 'live',
         'path' => '/module/user/benotes',
         'iconIdentifier' => 'notes',
-        'navigationComponent' => 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
+        'navigationComponent' => '',
         'labels' => 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf',
         'extensionName' => 'Benotes',
         'controllerActions' => [
