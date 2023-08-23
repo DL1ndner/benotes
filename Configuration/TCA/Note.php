@@ -175,8 +175,10 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 			'exclude' => 1,
 			'label' => 'Creation User',
 			'config' => [
-				'type' => 'none'
-				
+			     'type' => 'select',
+			     'renderType' => 'selectSingle',
+			     'foreign_table' => 'be_users',
+			     'foreign_table_where' => 'ORDER BY username',
 			],
 		],
 		
