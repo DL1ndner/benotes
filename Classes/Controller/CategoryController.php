@@ -50,8 +50,14 @@ use Dl\Benotes\Domain\Repository\CategoryRepository;
 class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	public function __construct(
-         protected readonly ModuleTemplateFactory $moduleTemplateFactory
-    	 ) {
+		protected TypoScriptService $typoScriptService,
+		protected UriBuilderBackend $uriBuilderBackend,
+         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+		 private ResponseFactory $factory
+    	 ) 
+	{
+		$this->moduleName = 'benotes_note';
+        $this->modulePrefix = 'tx_benotes_user_benotescategories';
 	}
 	
    	public function injectCategoryRepository(CategoryRepository $categoryRepository)
@@ -80,6 +86,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		if (empty($GLOBALS['BE_USER']->user['uid'])) {
 			return '';
 		}
+
 		$categories = $this->categoryRepository->findByCruser($currentCatUserUid);
 		$this->view->assign('title', $title);
 		$this->view->assign('categories', $categories);
@@ -106,6 +113,10 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
 	}
 
+	public function findCurrent() {
+		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
+		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
+	}
 	/**
 	 * action new
 	 * 
@@ -117,8 +128,8 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	{
 		$this->view->assign('title', $title);
 		$this->view->assign('newCategory', $newCategory);
-		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
-		$this->view->assign('cruser',(int)$GLOBALS['BE_USER']->user['uid']);
+		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
+		$this->view->assign('cruser', $currentCatUserUid);
 	        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
                 $moduleTemplate->setContent($this->view->render());
@@ -135,13 +146,9 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	public function createAction(\Dl\Benotes\Domain\Model\Category $newCategory): ResponseInterface
 	{
 	
-		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
-		$this->view->assign('cruser',(int)$GLOBALS['BE_USER']->user['uid']);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
-
+		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
+		$this->view->assign('cruser', $currentCatUserUid);
+		
 		$this->categoryRepository->add($newCategory);
 		return $this->redirect('list');
 	}
