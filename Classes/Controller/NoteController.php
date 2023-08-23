@@ -243,7 +243,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newNote
 	 * @return void
 	 */
-	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote)
+	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote): ResponseInterface
 	{
 		$this->noteRepository->add($newNote);
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
@@ -255,11 +255,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		
 		$isitpublic = $newNote->getPublic();
 		$this->view->assign('public',$public);
-		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-               /// $moduleTemplate->setContent($this->view->render());
-                //return $this->htmlResponse($moduleTemplate->renderContent());
-
+		
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		
 		// if note is public, send message to recipients defined by typoscript
@@ -294,7 +290,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			$this->addFlashMessage('Private Notiz erstellt.');
 		}
 
-		$this->redirect('list');
+		return $this->redirect('list');
 	}
 
 	/**
