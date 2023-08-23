@@ -101,7 +101,25 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         	return  $GLOBALS['BE_USER'];
     	}
 
-	/**
+		public function handleRequest(ServerRequestInterface $request): ResponseInterface
+		{
+			$languageService = $GLOBALS['LANG'];
+		
+			$this->menuConfig($request);
+			$moduleTemplate = $this->moduleTemplateFactory->create($request);
+			// setUpDocHeader() is documented below
+			$this->setUpDocHeader($moduleTemplate);
+		
+			$title = $languageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab');
+			
+			$moduleTemplate->setTitle(
+				$title,
+				$languageService->sL('EXT:examples/Resources/Private/Language/AdminModule/locallang.xlf:module.menu.log');
+			);
+			return $this->listAction($moduleTemplate);
+		}
+	
+		/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
 	 * @param string $pids Single PID or comma separated list of PIDs
