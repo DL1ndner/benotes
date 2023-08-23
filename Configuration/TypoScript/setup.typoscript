@@ -12,9 +12,12 @@ module.tx_benotes {
 		
 	}
 	view {
-		templateRootPath = {$module.tx_benotes.view.templateRootPath}
-		partialRootPath = {$module.tx_benotes.view.partialRootPath}
-		layoutRootPath = {$module.tx_benotes.view.layoutRootPath}
+		templateRootPaths.10 = {$module.tx_benotes.view.templateRootPath}
+		templateRootPaths.20 = EXT:beuser/Resources/Private/Templates
+		partialRootPaths.10 = {$module.tx_benotes.view.partialRootPath}
+		partialRootPaths.20 = EXT:beuser/Resources/Private/Partials
+		layoutRootPaths.10 = {$module.tx_benotes.view.layoutRootPath}
+		layoutRootPaths.20 = EXT:beuser/Resources/Private/Layouts
 	}
 	settings {
 			### comma-separated list of recipient email addresses that get informed when new note is created
