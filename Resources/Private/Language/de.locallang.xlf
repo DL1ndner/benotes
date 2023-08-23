@@ -31,6 +31,9 @@
 			<trans-unit id="tx_benotes_domain_model_note.public">
 				<target>Öffentliche Mitteilung?</target>
 			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.choseview">
+				<target>Bitte Ansicht auswählen</target>
+			</trans-unit>
 			<trans-unit id="tx_benotes_domain_model_note.publicnotes">
 				<target>Mitteilungen</target>
 			</trans-unit>

@@ -40,6 +40,9 @@
 			<trans-unit id="tx_benotes_domain_model_note.public">
 				<source>Public Note?</source>
 			</trans-unit>
+			<trans-unit id="tx_benotes_domain_model_note.choseview">
+				<source>Please choose a view</source>
+			</trans-unit>
 			<trans-unit id="tx_benotes_domain_model_note.publicnotes">
 				<source>Public Notes</source>
 			</trans-unit>
