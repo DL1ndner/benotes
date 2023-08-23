@@ -171,7 +171,12 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$maximumLinks = 10;
 		$currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
 		$paginator = new \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator($notes, $currentPage, $itemsPerPage);
-		$pagination = new \GeorgRinger\NumberedPagination\NumberedPagination($paginator, $maximumLinks);
+		//temporaily deactivate numbered pagination
+		//$pagination = new \GeorgRinger\NumberedPagination\NumberedPagination($paginator, $maximumLinks);
+		$pagination = new SlidingWindowPagination(
+                   	$paginator,
+                   	$maximumLinks
+                );
 		$this->view->assign('pagination', [
 			'paginator' => $paginator,
 			'pagination' => $pagination,
