@@ -30,7 +30,7 @@
 		</f:if>
 		<tr>
 			<td class="list_body" colspan="5">
-				<f:format.raw>{note.bodytext}</f:format.raw>
+				<f:sanitize.html />{note.bodytext}<f:sanitize.html />
 			</td>	
 		</tr>
 	</tbody>
