@@ -220,7 +220,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
 		$this->view->assign('cruser',$currentUserUid);
 		
-		$category = $this->categoryRepository->findByCruser($cruser);
+		$category = $this->categoryRepository->findByCruser($currentUserUid);
 		$this->view->assign('category',$category);
 		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
                 // Adding title, menus, buttons, etc. using $moduleTemplate ...
