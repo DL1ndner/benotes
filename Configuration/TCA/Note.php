@@ -84,7 +84,7 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 			'config' => [
 				'type' => 'datetime',
     				'format' => 'date',
-         			'required' => true,
+         			'required' => false,
          			'size' => 20,
          			'default' => 0,
 			],
@@ -95,7 +95,7 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 			'config' => [
 				'type' => 'datetime',
     				'format' => 'date',
-         			'required' => true,
+         			'required' => false,
          			'size' => 20,
          			'default' => 0,
 			],
