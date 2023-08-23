@@ -101,25 +101,16 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     	{
         	return  $GLOBALS['BE_USER'];
     	}
-		private function setDocHeader(): void
+	protected function initializeAction()
 		{
-			$buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
-			$dropDownButton = $buttonBar->makeDropDownButton()
-				->setLabel('Dropdown')
-				->setTitle('Save')
-				->setIcon($this->iconFactory->getIcon('actions-heart'))
-				->addItem(
-					GeneralUtility::makeInstance(DropDownItem::class)
-						->setLabel('Item')
-						->setHref('#')
-				);
-			$buttonBar->addButton(
-				$dropDownButton,
-				ButtonBar::BUTTON_POSITION_RIGHT,
-				2
-			);
+			$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+			$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
+	
+	
+			$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+			$this->moduleTemplate->setTitle('EXT:benotes');
 		}
-		
+	
 	
 		/**
 	 * Render notes by single PID or PID list with numbered_pagination
