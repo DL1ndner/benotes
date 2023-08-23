@@ -80,6 +80,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	{
 	 	$this->moduleName = 'benotes_note';
         $this->modulePrefix = 'tx_benotes_user_benotesnotes';
+		$this->moduleTemplateFactory = $moduleTemplateFactory;
    	}
 
     	public function injectNoteRepository(NoteRepository $noteRepository)
@@ -139,9 +140,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		   	]
 		);
 		$this->view->assign('notes', $notes);	
-		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-        //$moduleTemplate->setContent($this->view->render());
-		return $this->htmlResponse($this->view->render());
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate->setContent($this->view->render());
+		return $this->htmlResponse($moduleTemplate->renderContent());
 		
 	}
 	
