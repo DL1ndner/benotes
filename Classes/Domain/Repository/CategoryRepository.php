@@ -35,7 +35,14 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	public function findByCruser($cruser) {
+	/**
+	 * Find categories by given pids and author
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\BackendUser $cruser The author
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findByCruser($cruser): QueryResultInterface
+	{
 
 		$query = $this->createQuery();
 		$query->setOrderings(array(
