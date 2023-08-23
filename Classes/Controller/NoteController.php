@@ -84,34 +84,24 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->moduleTemplateFactory = $moduleTemplateFactory;
    	}
 
-    	public function injectNoteRepository(NoteRepository $noteRepository)
-    	{
-        	$this->noteRepository = $noteRepository;
-    	}
+	public function injectNoteRepository(NoteRepository $noteRepository)
+	{
+		$this->noteRepository = $noteRepository;
+	}
 	
-    	public function injectCategoryRepository(CategoryRepository $categoryRepository)
-    	{
-        	$this->categoryRepository = $categoryRepository;
-    	}
+	public function injectCategoryRepository(CategoryRepository $categoryRepository)
+	{
+		$this->categoryRepository = $categoryRepository;
+	}
 
 	public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
     {
         $this->backendUserRepository = $backendUserRepository;
     }
 	private function getBackendUser(): BackendUserAuthentication
-    	{
-        	return  $GLOBALS['BE_USER'];
-    	}
-	protected function initializeAction()
-		{
-			$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-			$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
-	
-	
-			$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-			$this->moduleTemplate->setTitle('EXT:benotes');
-		}
-	
+    {
+        return  $GLOBALS['BE_USER'];
+    }
 	
 		/**
 	 * Render notes by single PID or PID list with numbered_pagination
@@ -128,7 +118,6 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     		}
 		$cruser = '';
 		$notes = $this->noteRepository->findByCruser($cruser);	
-		//$notes = $this->noteRepository->findBy(['cruser' => 1, 'public' => true]);
 		$currentPage = '1';
 		$itemsPerPage = (int)$this->settings['itemsPerPage'];
 		$maximumLinks = 10;
@@ -149,11 +138,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		   	]
 		);
 		$this->view->assign('notes', $notes);	
-		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-        //$this->setDocHeader();
-       // $moduleTemplate->setContent($this->view->render());
-		//return $this->htmlResponse($moduleTemplate->renderContent());
-		return $this->htmlResponse();
+		/$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate->setContent($this->view->render());
+	    return $this->htmlResponse($moduleTemplate->renderContent());
 	}
 	
 	
