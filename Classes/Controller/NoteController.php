@@ -73,7 +73,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	public function __construct(
 		protected TypoScriptService $typoScriptService,
 		protected UriBuilderBackend $uriBuilderBackend,
-		protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+		protected ModuleTemplateFactory $moduleTemplateFactory,
 		//protected readonly BackendUserRepository $backendUserRepository,
 		private ResponseFactory $factory
 	)  
