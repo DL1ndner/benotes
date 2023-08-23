@@ -374,11 +374,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	{
 		
 		$this->noteRepository->remove($note);
-		$this->redirect('list');
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+		return $this->redirect('list');
+		
 
 	}
 
