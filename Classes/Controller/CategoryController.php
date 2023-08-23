@@ -41,8 +41,9 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
-use Dl\Benotes\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
+use Dl\Benotes\Domain\Repository\CategoryRepository;
 
 /**
  * CategoryController
