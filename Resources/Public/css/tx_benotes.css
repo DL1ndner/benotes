@@ -57,12 +57,7 @@ tr.list_public_notes {
 tr.list_private_notes {
 	background-color:#ccff99;
 	}
-.pagination { width:800px; display: block; float: right; margin: 0 0 10px; }
-.f3-widget-paginator li { font-weight: bold; display: block; background-color: #eee; float: left; width: 30px; text-align: center; margin: 0 2px 2px; }
-.f3-widget-paginator li.current { background-color: #aaa; border: 1px solid black; padding: 2px; }
-.f3-widget-paginator li.next,
-.f3-widget-paginator li.previous { width: auto; }
-.f3-widget-paginator a { font-weight: normal; display: block; border: 1px solid black; padding: 2px; }
+.pagination {margin: 10px; }
 
 .ck.ck-content.ck-editor__editable {  height: 15em;}
 
