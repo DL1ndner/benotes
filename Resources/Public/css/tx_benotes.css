@@ -64,6 +64,8 @@ tr.list_private_notes {
 .f3-widget-paginator li.previous { width: auto; }
 .f3-widget-paginator a { font-weight: normal; display: block; border: 1px solid black; padding: 2px; }
 
+.ck.ck-content.ck-editor__editable {  height: 15em;}
+
 .marker {
 	background-color:yellow;
 	padding:3px;
