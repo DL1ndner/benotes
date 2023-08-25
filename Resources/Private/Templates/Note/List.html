@@ -40,12 +40,10 @@
 		<td class="header_title"><b><f:link.action action="show" arguments="{note : note}"> {note.title}</f:link.action></b></td>
 		<td class="list_body">
 			<f:link.action action="show" arguments="{note : note}">
-				<f:format.html parseFuncTSPath="lib.parseFunc">
-					<f:sanitize.html />
-						<f:format.crop maxCharacters="100" respectWordBoundaries="true" respectHtml="true"  append="&nbsp;...">
+				<f:format.html parseFuncTSPath="lib.parseFunc_RTE">
+					<f:format.crop maxCharacters="100" respectWordBoundaries="true" respectHtml="true"  append="&nbsp;...">
 							{note.bodytext}
-						</f:format.crop>
-					</f:sanitize.html>
+					</f:format.crop>
 				</f:format.html>
 			</f:link.action>
 		</td>	
