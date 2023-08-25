@@ -247,7 +247,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		//$this->view->assign('cruser', $currentUserUid);
 		
 		$isitpublic = $newNote->getPublic();
-		$this->view->assign('public',$public);
+		$this->view->assign('public',$isitpublic);
 		
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		
