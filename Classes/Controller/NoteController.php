@@ -137,13 +137,15 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				'paginator' => $paginator,
 			]
 		);
-		$moduleTemplate = $this->moduleTemplateFactory->create($request);
-		$moduleTemplate->assign('notes', $notes);
-		//$this->view->assign('notes', $notes);	
+		
+		
+		$this->view->assign('notes', $notes);	
       		//$moduleTemplate->setContent($this->view->render());
 		//return $this->htmlResponse($moduleTemplate->renderContent());
 		//return $this->renderResponse('List');
 		return $moduleTemplate->renderResponse('List');
+		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+       		return $this->htmlResponse($moduleTemplate->renderContent('List'));
 	}
 	
 	
