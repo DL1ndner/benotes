@@ -47,7 +47,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<td class="header_date"><f:format.date format="d-m-Y H:i">@{note.crdate}</f:format.date>, </td>
 		<td class="header_author"><f:link.action action="show" arguments="{note : note}"> {note.cruser.username}: </f:link.action></td>
 		<td class="header_title"><b><f:link.action action="show" arguments="{note : note}"> {note.title}</f:link.action></b></td>
-		<td class="list_body"><f:link.action action="show" arguments="{note : note}"><f:sanitize.html /><f:format.crop maxCharacters="100" respectWordBoundaries="true" respectHtml="true"  append="&nbsp;...">{note.bodytext}</f:format.crop><f:sanitize.html /></f:link.action></td>	
+		<td class="list_body">
+			<f:link.action action="show" arguments="{note : note}">
+				<f:format.raw>
+					<f:format.crop maxCharacters="100" respectWordBoundaries="true" respectHtml="true"  append="&nbsp;...">
+							{note.bodytext-> f:sanitize.html(build: 'default')}
+					</f:format.crop>
+				</f:format.raw>
+			</f:link.action></td>	
 		<td class="header_cat"><f:link.action action="show" arguments="{note : note}"> {note.category.title}</f:link.action></td>
 		<td>
 			<f:link.action action="edit" arguments="{note : note}"  additionalAttributes = "{class: 'btn btn-default'}" title="Bearbeiten">
