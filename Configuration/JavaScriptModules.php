@@ -3,6 +3,6 @@
 return [
     'dependencies' => ['backend', 'rte_ckeditor'],
     'imports' => [
-        '@dl/benotes/' => 'EXT:benotes/Resources/Public/JavaScript/Backend/',
+        '@dl/benotes/' => 'EXT:benotes/Resources/Public/js/Backend/',
     ],
 ];
