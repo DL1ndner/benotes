@@ -126,19 +126,19 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		// temporarily deactivate numbered pagination
 		//$pagination = new \GeorgRinger\NumberedPagination\NumberedPagination($paginator, $maximumLinks);
 		$pagination = new SlidingWindowPagination(
-            $paginator,
-            $maximumLinks
-        );
+            		$paginator,
+            		$maximumLinks
+	        );
 
-        $this->view->assign(
-            'pagination',
-            [
-			    'pagination' => $pagination,
-			    'paginator' => $paginator,
-		   	]
+	        $this->view->assign(
+	        	'pagination',
+	            	[
+				'pagination' => $pagination,
+				'paginator' => $paginator,
+			]
 		);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-		$moduleTemplate->view->assign('notes', $notes);	
+		$moduleTemplate = $this->moduleTemplateFactory->create($request);
+		$moduleTemplate->assign('notes', $notes);
 		//$this->view->assign('notes', $notes);	
       		//$moduleTemplate->setContent($this->view->render());
 		//return $this->htmlResponse($moduleTemplate->renderContent());
