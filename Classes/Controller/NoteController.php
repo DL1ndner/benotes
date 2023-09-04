@@ -103,7 +103,33 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         return  $GLOBALS['BE_USER'];
     }
 	
-		/**
+	protected function initializeAction()
+	{
+		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+
+		$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+		$this->moduleTemplate->setTitle('EXT:benotes');
+	}
+	private function setDocHeader(): void
+	{
+
+		$buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+		$dropDownButton = $buttonBar->makeDropDownButton()
+		    ->setLabel('Dropdown')
+		    ->setTitle('Test')
+		    ->setIcon($this->iconFactory->getIcon('actions-heart'))
+		    ->addItem(
+		        GeneralUtility::makeInstance(DropDownItem::class)
+		            ->setLabel('Item')
+		            ->setHref('#')
+		    );
+		$buttonBar->addButton(
+		    $dropDownButton,
+		    ButtonBar::BUTTON_POSITION_RIGHT,
+		    2
+		);
+	}
+	/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
 	 * @param string $pids Single PID or comma separated list of PIDs
@@ -141,6 +167,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		
 		$this->view->assign('notes', $notes);	
 		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+		$this->setDocHeader();
       		$moduleTemplate->setContent($this->view->render());
 		$response = $this->factory->createResponse();
 		$response->getBody()->write($moduleTemplate->renderContent());
