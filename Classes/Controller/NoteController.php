@@ -117,7 +117,6 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$dropDownButton = $buttonBar->makeDropDownButton()
 		    ->setLabel('Dropdown')
 		    ->setTitle('Test')
-		    ->setIcon($this->iconFactory->getIcon('actions-heart'))
 		    ->addItem(
 		        GeneralUtility::makeInstance(DropDownItem::class)
 		            ->setLabel('Item')
