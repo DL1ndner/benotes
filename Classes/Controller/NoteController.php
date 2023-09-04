@@ -75,6 +75,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		protected TypoScriptService $typoScriptService,
 		protected UriBuilderBackend $uriBuilderBackend,
 		protected ModuleTemplateFactory $moduleTemplateFactory,
+		protected readonly IconFactory $iconFactory,
 		//protected readonly BackendUserRepository $backendUserRepository,
 		private ResponseFactory $factory
 	)  
@@ -117,7 +118,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$dropDownButton = $buttonBar->makeDropDownButton()
 		    ->setLabel('Dropdown')
 		    ->setTitle('Test')
-		    ->setIcon('notes')
+		    ->setIcon($this->iconFactory->getIcon('actions-heart'))
 		    ->addItem(
 		        GeneralUtility::makeInstance(DropDownItem::class)
 		            ->setLabel('Item')
