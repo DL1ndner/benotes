@@ -332,6 +332,18 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         }
         return $this->htmlResponse($this->getViewToUse()->render());
     }
+	protected function createMenu(): void
+	{
+	        $actions = [
+	            [
+	                'action' => 'list',
+	                'controller' => 'Note',
+	                'label' => $this->translate('tx_benotes_label.listNotes')
+	            ]
+	        ];
+	        
+	        $this->createMenuActions($actions);
+    	}
 
 
 	private function setDocHeader(string $active) {
@@ -370,20 +382,33 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
             		$maximumLinks
 	        );
 
-	        $this->view->assign(
-	        	'pagination',
+	      //  $this->view->assign(
+	      //  	'pagination',
+	      //      	[
+		//		'pagination' => $pagination,
+		//		'paginator' => $paginator,
+		//	]
+		//);
+		
+		
+		//$this->view->assign('notes', $notes);	
+		
+		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+      		//$moduleTemplate->setContent($this->view->render());
+		//return $this->htmlResponse($moduleTemplate->renderContent());
+		
+		$this->getViewToUse()->assign('notes', $notes);
+        	$this->getViewToUse()->assign(
+		       	'pagination',
 	            	[
 				'pagination' => $pagination,
 				'paginator' => $paginator,
 			]
 		);
-		
-		
-		$this->view->assign('notes', $notes);	
-		
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-      		$moduleTemplate->setContent($this->view->render());
-		return $this->htmlResponse($moduleTemplate->renderContent());
+       
+        	$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
+
 
 	}
 	
