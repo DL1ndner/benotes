@@ -98,13 +98,13 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	public function injectBackendUserRepository (\TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository $backendUserRepository)
-    {
-        $this->backendUserRepository = $backendUserRepository;
-    }
+    	{
+        	$this->backendUserRepository = $backendUserRepository;
+    	}
 	private function getBackendUser(): BackendUserAuthentication
-    {
-        return  $GLOBALS['BE_USER'];
-    }
+    	{
+        	return  $GLOBALS['BE_USER'];
+    	}
 	
 	protected function initializeAction()
 	{
@@ -115,71 +115,49 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	
-    /**
-     * @return string
-     * @throws RouteNotFoundException
-     */
-    protected function getReturnUrl(): string
-    {
-        $parameter = [
-            'id' => $this->pageUid,
-            $this->modulePrefix => [
-                'action' => $this->request->getControllerActionName(),
-                'controller' => $this->request->getControllerName(),
-            ],
-        ];
-        return (string)$this->uriBuilderBackend->buildUriFromRoute($this->moduleName, $parameter);
-    }
-    protected function getIcon(string $key): Icon
-    {
-        return $this->iconFactory->getIcon($key, Icon::SIZE_SMALL);
-    }
-
-    /**
-     * v12 returns ModuleTemplate, v11 ViewInterface
-     *
-     * @return ModuleTemplate|ViewInterface
-     */
-    protected function getViewToUse()
-    {
-        if (method_exists($this->moduleTemplate, 'assign')) {
-            return $this->moduleTemplate;
-        }
-        return $this->view;
-    }
-
-    protected function renderViewToUse(): ResponseInterface
-    {
-        if (!$this->getViewToUse() instanceof ModuleTemplate) {
-            // v11
-            $this->moduleTemplate->setContent($this->getViewToUse()->render());
-            return $this->htmlResponse($this->moduleTemplate->renderContent());
-        }
-        return $this->htmlResponse($this->getViewToUse()->render());
-    }
-	protected function createMenu(): void
+	/**
+	* @return string
+	* @throws RouteNotFoundException
+	*/
+	protected function getReturnUrl(): string
 	{
-	        $actions = [
-	            [
-	                'action' => 'list',
-	                'controller' => 'Note',
-	                'label' => $this->translate('tx_benotes_label.listNotes')
-	            ]
+	        $parameter = [
+	            'id' => $this->pageUid,
+	            $this->modulePrefix => [
+	                'action' => $this->request->getControllerActionName(),
+	                'controller' => $this->request->getControllerName(),
+	            ],
 	        ];
-	        
-	        $this->createMenuActions($actions);
-    	}
-
-
-	private function setDocHeader(string $active) {
-   $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
-   $list = $buttonBar->makeLinkButton()
-      ->setHref('<uri-builder-path>')
-      ->setTitle('A Title')
-      ->setShowLabelText('Link')
-      ->setIcon($this->moduleTemplate->getIconFactory()->getIcon('actions-extension-import', Icon::SIZE_SMALL));
-   $buttonBar->addButton($list, ButtonBar::BUTTON_POSITION_LEFT, 1);
-}
+	        return (string)$this->uriBuilderBackend->buildUriFromRoute($this->moduleName, $parameter);
+	}
+	protected function getIcon(string $key): Icon
+	{
+	        return $this->iconFactory->getIcon($key, Icon::SIZE_SMALL);
+	}
+	
+	/**
+	* v12 returns ModuleTemplate, v11 ViewInterface
+	*
+	* @return ModuleTemplate|ViewInterface
+	*/
+	protected function getViewToUse()
+	{
+	        if (method_exists($this->moduleTemplate, 'assign')) {
+	            return $this->moduleTemplate;
+	        }
+	        return $this->view;
+	}
+	
+	protected function renderViewToUse(): ResponseInterface
+	{
+	        if (!$this->getViewToUse() instanceof ModuleTemplate) {
+	            // v11
+	            $this->moduleTemplate->setContent($this->getViewToUse()->render());
+	            return $this->htmlResponse($this->moduleTemplate->renderContent());
+	        }
+	        return $this->htmlResponse($this->getViewToUse()->render());
+	}
+	
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
