@@ -76,7 +76,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		protected TypoScriptService $typoScriptService,
 		protected UriBuilderBackend $uriBuilderBackend,
 		protected ModuleTemplateFactory $moduleTemplateFactory,
-		protected readonly IconFactory $iconFactory,
+		protected IconFactory $iconFactory,
 		//protected readonly BackendUserRepository $backendUserRepository,
 		private ResponseFactory $factory
 	)  
