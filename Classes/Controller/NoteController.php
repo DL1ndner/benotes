@@ -263,14 +263,15 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
                    	$paginator,
                    	$maximumLinks
                 );
-		$this->view->assign('pagination', [
+		$this->getViewToUse()->assign('pagination', [
 			'paginator' => $paginator,
 			'pagination' => $pagination,
 		]);
-		$this->view->assign('notes', $notes);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-      		$moduleTemplate->setContent($this->view->render());
-		return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('notes', $notes);
+		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+      		//$moduleTemplate->setContent($this->view->render());
+		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
 
 	}
 	
@@ -284,11 +285,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	public function showAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
 	{
 				
-		$this->view->assign('note', $note);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('note', $note);
+		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
+
 
 		
 	}
@@ -305,17 +305,16 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function newAction(\Dl\Benotes\Domain\Model\Note $newNote = NULL): ResponseInterface
 	{
-		$this->view->assign('newNote', $newNote);
+		$this->getViewToUse()->assign('newNote', $newNote);
 		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
-		$this->view->assign('cruser', $currentUserUid);
+		$this->getViewToUse()->assign('cruser', $currentUserUid);
 		
 		$category = $this->categoryRepository->findByCruser($currentUserUid);
-		$this->view->assign('category',$category);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('category',$category);
+		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
+
 
 	}
 	
@@ -333,13 +332,13 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->noteRepository->add($newNote);
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
 		$category = $this->categoryRepository->findByCruser($currentUserUid);
-		$this->view->assign('category',$category);
+		$this->getViewToUse()->assign('category',$category);
        
 		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		//$this->view->assign('cruser', $currentUserUid);
 		
 		$isitpublic = $newNote->getPublic();
-		$this->view->assign('public',$isitpublic);
+		$this->getViewToUse()->assign('public',$isitpublic);
 		
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		
@@ -387,13 +386,11 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function editAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
 	{
-		$this->view->assign('note', $note);
+		$this->getViewToUse()->assign('note', $note);
 		$category = $this->categoryRepository->findAll();
-		$this->view->assign('category',$category);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('category',$category);
+		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
 
 	}
 
@@ -407,11 +404,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	{
 		$this->noteRepository->update($note);
 		$category = $this->categoryRepository->findAll();
-		$this->view->assign('category',$category);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-               // $moduleTemplate->setContent($this->view->render());
-               // return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('category',$category);
 		
 		$isitpublic = $note->getPublic();
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
