@@ -148,11 +148,9 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
 		$categories = $this->categoryRepository->findByCruser($currentCatUserUid);
 		//$this->view->assign('title', $title);
-		$this->view->assign('categories', $categories);
-	        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('categories', $categories);
+	        $this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
 
 	}
 
@@ -164,11 +162,9 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function showAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
 	{
-		$this->view->assign('category', $category);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('category', $category);
+		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
 
 	}
 
@@ -183,15 +179,12 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	public function newAction(\Dl\Benotes\Domain\Model\Category $newCategory = NULL): ResponseInterface
 	{
 		//$this->view->assign('title', $title);
-		$this->view->assign('newCategory', $newCategory);
+		$this->getViewToUse()->assign('newCategory', $newCategory);
 
 		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
-		$this->view->assign('cruser', $currentCatUserUid);
-
-	    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-        // Adding title, menus, buttons, etc. using $moduleTemplate ...
-        $moduleTemplate->setContent($this->view->render());
-        return $this->htmlResponse($moduleTemplate->renderContent());
+		$this->getViewToUse()->assign('cruser', $currentCatUserUid);
+		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
 
 	}
 
@@ -205,7 +198,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	{
 	
 		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
-		$this->view->assign('cruser', $currentCatUserUid);
+		$this->getViewToUse()-assign('cruser', $currentCatUserUid);
 		
 		$this->categoryRepository->add($newCategory);
 		return $this->redirect('list');
@@ -220,12 +213,9 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function editAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
 	{
-		$this->view->assign('category', $category);
-		$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-                // Adding title, menus, buttons, etc. using $moduleTemplate ...
-                $moduleTemplate->setContent($this->view->render());
-                return $this->htmlResponse($moduleTemplate->renderContent());
-
+		$this->getViewToUse()-assign('category', $category);
+		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
+        	return $this->renderViewToUse();
 	}
 
 	/**
