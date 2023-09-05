@@ -83,6 +83,58 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
 	}	
 
+	protected function initializeAction()
+	{
+		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
+		$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+		$this->moduleTemplate->setTitle('EXT:benotes');
+	}
+
+	
+    /**
+     * @return string
+     * @throws RouteNotFoundException
+     */
+    protected function getReturnUrl(): string
+    {
+        $parameter = [
+            'id' => $this->pageUid,
+            $this->modulePrefix => [
+                'action' => $this->request->getControllerActionName(),
+                'controller' => $this->request->getControllerName(),
+            ],
+        ];
+        return (string)$this->uriBuilderBackend->buildUriFromRoute($this->moduleName, $parameter);
+    }
+    protected function getIcon(string $key): Icon
+    {
+        return $this->iconFactory->getIcon($key, Icon::SIZE_SMALL);
+    }
+
+    /**
+     * v12 returns ModuleTemplate, v11 ViewInterface
+     *
+     * @return ModuleTemplate|ViewInterface
+     */
+    protected function getViewToUse()
+    {
+        if (method_exists($this->moduleTemplate, 'assign')) {
+            return $this->moduleTemplate;
+        }
+        return $this->view;
+    }
+
+    protected function renderViewToUse(): ResponseInterface
+    {
+        if (!$this->getViewToUse() instanceof ModuleTemplate) {
+            // v11
+            $this->moduleTemplate->setContent($this->getViewToUse()->render());
+            return $this->htmlResponse($this->moduleTemplate->renderContent());
+        }
+        return $this->htmlResponse($this->getViewToUse()->render());
+    }
+
 	/**
 	 * action list
 	 * 
