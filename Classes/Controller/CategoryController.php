@@ -44,6 +44,7 @@ use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Page\PageRenderer;
 
 /**
  * CategoryController
