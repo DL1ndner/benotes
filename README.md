@@ -20,6 +20,7 @@ Can I assign notes to certain be_users/be_usergroups? Not yet, but could be a fe
 2. Create a new Sysfolder and remember the Page ID
 3. Include static Template Backend Notes (benotes) to your Root Template
 4. Set module.tx_benotes.persistence.storagePid to your Sysfolder ID
+5. (optional) Set module.tx_benotes.settings.infomailto to one ore more (comma-separated) email adresses which should be informed if new public note has been created
 
 ### FAQ
 None so far.
@@ -33,6 +34,8 @@ I'm getting a fatal error because of missing Page ID! Check if module.tx_benotes
 ## Reference (TypoScript)
 module.tx_benotes.persistence: Page ID of sysfolder, where your notes and categories should be stored; must be set, Default: 
 Example: module.tx_benotes.persistence.storagePid = 120
+module.tx_benotes.settings.infomailto: (comma-separated) email adresses which should be informed if new public note has been created. Default:
+Example: module.tx_benotes.settings.infomailto = user@example.com, anotheruser@example.org
 module.tx_benotes.view.templateRootPath: Path to backend view template root, default: EXT:benotes/Resources/Private/Backend/Templates/
 module.tx_benotes.view.partialRootPath: Path to backend view partials root, default: EXT:benotes/Resources/Private/Backend/Partials/
 module.tx_benotes.view.layoutRootPath: Path to backend view layout root, default: EXT:benotes/Resources/Private/Backend/Layouts/
