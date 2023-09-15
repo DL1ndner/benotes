@@ -51,9 +51,3 @@ config.tx_extbase.persistence.classes {
 		}
 	}
 }
-
-page {
-  	includeCSS {
-    		benotes = EXT:benotes/Resources/Public/css/tx_benotes.css
-  	}
-}
