@@ -302,7 +302,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * action create
 	 * 
 	 * @param \Dl\Benotes\Domain\Model\Note $newNote
-	 * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newNote
+	 * 
 	 * @return void
 	 */
 	public function createAction(\Dl\Benotes\Domain\Model\Note $newNote): ResponseInterface
