@@ -70,7 +70,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 	private ?NoteRepository $noteRepository = null;
 	
-	private ?CategoryRepository $categoryRepository = '';
+	private ?CategoryRepository $categoryRepository = null;
 	
 	public function __construct(
 		protected TypoScriptService $typoScriptService,
