@@ -82,6 +82,7 @@ protected $userRepository;
 	 * category
 	 * 
 	 * @var \Dl\Benotes\Domain\Model\Category
+         * @Extbase\Validate("NotEmpty")
 	 */
 	protected $category;
 
