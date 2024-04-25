@@ -131,7 +131,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         if (!$this->getViewToUse() instanceof ModuleTemplate) {
             // v11
             $this->moduleTemplate->setContent($this->getViewToUse()->render());
-            return $this->htmlResponse($this->moduleTemplate->renderContent());
+            return $this->htmlResponse($this->moduleTemplate->render());
         }
         return $this->htmlResponse($this->getViewToUse()->render());
     }
