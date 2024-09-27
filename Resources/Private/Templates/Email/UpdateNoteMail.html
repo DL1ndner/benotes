@@ -4,11 +4,11 @@
   <h4>Hallo,</h4>
   <p>jemand hat die Mitteilung "{note.title}" geändert:</p>
   <quote>
-    <f:format.html>
+    <f:format.raw>
       <f:format.crop maxCharacters="200" append="...">
-        {note.bodytext}
+        {note.bodytext-> f:sanitize.html(build: 'default')}}
       </f:format.crop>
-   </f:format.html>
+   </f:format.raw>
   </quote>
   <p>Die ganze Mitteilung findest Du im <a href="{baseUri}/typo3">Backend von {typo3.sitename}</a>.</p>
 
