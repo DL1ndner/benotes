@@ -5,7 +5,7 @@ namespace Dl\Benotes\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2023
+ *  (c) 2024
  *
  *  All rights reserved
  *
@@ -55,8 +55,8 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	public function __construct(
 		protected TypoScriptService $typoScriptService,
 		protected UriBuilderBackend $uriBuilderBackend,
-         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
-		 private ResponseFactory $factory
+         	protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+		private ResponseFactory $factory
     	 ) 
 	{
 		$this->moduleName = 'benotes_note';
@@ -89,7 +89,10 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
 		$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-		$this->moduleTemplate->setTitle('EXT:benotes');
+		$this->moduleTemplate->setTitle(
+			$title,
+                    	$languageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab'),
+                );
 	}
 
 	
