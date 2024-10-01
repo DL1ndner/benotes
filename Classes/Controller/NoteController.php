@@ -111,7 +111,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
 		$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-		$this->moduleTemplate->setTitle('EXT:benotes');
+		$this->moduleTemplate->setTitle(
+			$title,
+                    	$languageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab'),
+                );
 	}
 
 	
