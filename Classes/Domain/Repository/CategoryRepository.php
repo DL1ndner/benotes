@@ -5,7 +5,7 @@ namespace Dl\Benotes\Domain\Repository;
  *
  *  Copyright notice
  *
- *  (c) 2014
+ *  (c) 2024
  *
  *  All rights reserved
  *
