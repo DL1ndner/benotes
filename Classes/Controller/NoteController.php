@@ -8,7 +8,7 @@ namespace Dl\Benotes\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2023
+ *  (c) 2024
  *
  *  All rights reserved
  *
