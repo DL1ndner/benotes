@@ -39,6 +39,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder as UriBuilderBackend;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -90,8 +91,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
 		$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
 		$this->moduleTemplate->setTitle(
-			$title,
-                    	$languageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab'),
+                    	$this->getLanguageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab')
                 );
 	}
 
