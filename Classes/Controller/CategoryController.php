@@ -39,6 +39,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder as UriBuilderBackend;
+use TYPO3\CMS\Form\Service\TranslationService;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -80,6 +81,11 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         	return  $GLOBALS['BE_USER'];
     	}
 
+	protected function getLanguageService(): LanguageService
+    	{
+        	return $GLOBALS['LANG'];
+    	}
+
 	public function findCurrent() {
 		$currentCatUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
@@ -89,9 +95,10 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	{
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
+		$languageService = $this->getLanguageService();
 		$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
 		$this->moduleTemplate->setTitle(
-                    	$this->getLanguageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab')
+                    	$languageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab')
                 );
 	}
 
