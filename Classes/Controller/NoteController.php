@@ -49,6 +49,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder as UriBuilderBackend;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
+use TYPO3\CMS\Form\Service\TranslationService;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownItem;
@@ -115,9 +116,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	{
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
+		$languageService = $this->getLanguageService();
 		$this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
 		$this->moduleTemplate->setTitle(
-                    	$tihs->getLanguageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab')
+                    	$languageService->sL('LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:mlang_tabs_tab')
                 );
 	}
 
