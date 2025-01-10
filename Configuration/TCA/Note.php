@@ -50,7 +50,10 @@ $GLOBALS['TCA']['tx_benotes_domain_model_note'] = [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
 				'items' => [
-					array('', 0),
+					[
+						'label' => '',
+                    				'value' => '0',
+					],
 				],
 				'foreign_table' => 'tx_benotes_domain_model_note',
 				'foreign_table_where' => 'AND tx_benotes_domain_model_note.pid=###CURRENT_PID### AND tx_benotes_domain_model_note.sys_language_uid IN (-1,0)',
