@@ -112,7 +112,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         	return $GLOBALS['LANG'];
     	}
 	
-	protected function initializeAction()
+	protected function initializeAction(): void
 	{
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
