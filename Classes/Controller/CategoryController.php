@@ -120,7 +120,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
     protected function getIcon(string $key): Icon
     {
-        return $this->iconFactory->getIcon($key, Icon::SIZE_SMALL);
+        return $this->iconFactory->getIcon($key, IconSize::SMALL);
     }
 
     /**
