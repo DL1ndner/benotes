@@ -91,7 +91,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
 	}	
 
-	protected function initializeAction()
+	protected function initializeAction(): void
 	{
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
