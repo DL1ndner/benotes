@@ -143,30 +143,18 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	{
 	        return $this->iconFactory->getIcon($key, IconSize::SMALL);
 	}
-	
-	/**
-	* v12 returns ModuleTemplate, v11 ViewInterface
-	*
-	* @return ModuleTemplate|ViewInterface
-	*/
-	protected function getViewToUse()
-	{
-	        if (method_exists($this->moduleTemplate, 'assign')) {
-	            return $this->moduleTemplate;
-	        }
-	        return $this->view;
-	}
-	
-	protected function renderViewToUse(): ResponseInterface
-	{
-	        if (!$this->getViewToUse() instanceof ModuleTemplate) {
-	            // v11
-	            $this->moduleTemplate->setContent($this->getViewToUse()->render());
-	            return $this->htmlResponse($this->moduleTemplate->render());
-	        }
-	        return $this->htmlResponse($this->getViewToUse()->render());
-	}
-	
+
+	protected function initializeModuleTemplate(
+        ServerRequestInterface $request,
+	    ): ModuleTemplate {
+		$view = $this->moduleTemplateFactory->create($request);
+
+		//$this->modifyDocHeaderComponent($view);
+		$view->setFlashMessageQueue($this->getFlashMessageQueue());
+
+		return $view;
+	    }
+
 	/**
 	 * Render notes by single PID or PID list with numbered_pagination
 	 *
@@ -187,41 +175,21 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$maximumLinks = 10;
 		$currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
 		$paginator = new \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator($notes, $currentPage, $itemsPerPage);
-		// temporarily deactivate numbered pagination
-		//$pagination = new \GeorgRinger\NumberedPagination\NumberedPagination($paginator, $maximumLinks);
 		$pagination = new SlidingWindowPagination(
             		$paginator,
             		$maximumLinks
 	        );
-
-	      //  $this->view->assign(
-	      //  	'pagination',
-	      //      	[
-		//		'pagination' => $pagination,
-		//		'paginator' => $paginator,
-		//	]
-		//);
 		
-		
-		//$this->view->assign('notes', $notes);	
-		
-		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-      		//$moduleTemplate->setContent($this->view->render());
-		//return $this->htmlResponse($moduleTemplate->renderContent());
-		
-		$this->getViewToUse()->assign('notes', $notes);
-        	$this->getViewToUse()->assign(
+		$view = $this->initializeModuleTemplate($this->request);
+        	$view->assign('notes', $notes);
+        	$view->assign(
 		       	'pagination',
 	            	[
 				'pagination' => $pagination,
 				'paginator' => $paginator,
 			]
 		);
-       
-        	$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
-
-
+       		return $view->renderResponse('Note/List');
 	}
 	
 	
@@ -244,22 +212,21 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$maximumLinks = 10;
 		$currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
 		$paginator = new \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator($notes, $currentPage, $itemsPerPage);
-		//temporaily deactivate numbered pagination
-		//$pagination = new \GeorgRinger\NumberedPagination\NumberedPagination($paginator, $maximumLinks);
 		$pagination = new SlidingWindowPagination(
                    	$paginator,
                    	$maximumLinks
                 );
-		$this->getViewToUse()->assign('pagination', [
-			'paginator' => $paginator,
-			'pagination' => $pagination,
-		]);
-		$this->getViewToUse()->assign('notes', $notes);
-		//$moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-      		//$moduleTemplate->setContent($this->view->render());
-		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
-
+		$view = $this->initializeModuleTemplate($this->request);
+        	$view->assign('notes', $notes);
+        	$view->assign(
+		       	'pagination',
+	            	[
+				'pagination' => $pagination,
+				'paginator' => $paginator,
+			]
+		);
+       		
+		return $view->renderResponse('Note/ListPrivate');
 	}
 	
 
@@ -271,14 +238,13 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function showAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
 	{
-				
-		$this->getViewToUse()->assign('note', $note);
-		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
-
-
-		
+		$view = $this->initializeModuleTemplate($this->request);		
+		$view->assign('note', $note);
+		$view->assign('actionMethodName', $this->actionMethodName);
+        	
+		return $view->renderResponse('Note/Show');
 	}
+	
 	public function findCurrent() {
 		$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
 		return $currentUserUid ? $this->findByUid($currentUserUid) : null;
@@ -292,17 +258,17 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function newAction(\Dl\Benotes\Domain\Model\Note $newNote = NULL): ResponseInterface
 	{
-		$this->getViewToUse()->assign('newNote', $newNote);
-		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
+
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
-		$this->getViewToUse()->assign('cruser', $currentUserUid);
-		
 		$category = $this->categoryRepository->findByCruser($currentUserUid);
-		$this->getViewToUse()->assign('category',$category);
-		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
-
-
+		
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('cruser', $currentUserUid);
+		$view->assign('newNote', $newNote);
+		$view->assign('category',$category);
+		$view->assign('actionMethodName', $this->actionMethodName);
+        	
+        	return $view->renderResponse('Note/New');
 	}
 	
 	
@@ -320,19 +286,17 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->noteRepository->add($newNote);
 		$currentUserUid = (int)$this->getBackendUser()->user['uid'];
 		$category = $this->categoryRepository->findByCruser($currentUserUid);
-		$this->getViewToUse()->assign('category',$category);
-       
-		//$currentUserUid = (int)$GLOBALS['BE_USER']->user['uid'];
-		//$this->view->assign('cruser', $currentUserUid);
-		
 		$isitpublic = $newNote->getPublic();
-		$this->getViewToUse()->assign('public',$isitpublic);
-		
+		$recipients = $this->settings['infomailto'] ?? '';
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('category',$category);
+		$view->assign('cruser', $currentUserUid);
+		$view->assign('public',$isitpublic);
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		
 		// if note is public, send message to recipients defined by typoscript
 		if($isitpublic == 1) {
-			if($this->settings['infomailto'] !='') {
+			if($recipients !='') {
 				$from = \TYPO3\CMS\Core\Utility\MailUtility::getSystemFrom();
 			
 				$recipients = $this->settings['infomailto'];
@@ -374,11 +338,13 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function editAction(\Dl\Benotes\Domain\Model\Note $note): ResponseInterface
 	{
-		$this->getViewToUse()->assign('note', $note);
 		$category = $this->categoryRepository->findAll();
-		$this->getViewToUse()->assign('category',$category);
-		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('note', $note);
+		$view->assign('category',$category);
+		$view->assign('actionMethodName', $this->actionMethodName);
+        	
+		return $view->renderResponse('Note/Edit');
 
 	}
 
@@ -392,13 +358,14 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	{
 		$this->noteRepository->update($note);
 		$category = $this->categoryRepository->findAll();
-		$this->getViewToUse()->assign('category',$category);
-		
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('category',$category);
+		$recipients = $this->settings['infomailto'] ?? '';
 		$isitpublic = $note->getPublic();
 		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
 		// if note is public, send message to recipients defined by typoscript
 		if($isitpublic == 1) {
-			if($this->settings['infomailto'] !='') {
+			if($recipients !='') {
 				$from = \TYPO3\CMS\Core\Utility\MailUtility::getSystemFrom();
 				$recipients = $this->settings['infomailto'];
 				$recipients = trim($recipients);
