@@ -29,7 +29,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\ResponseFactory;
-use TYPO3\CMS\Backend\Attribute\Controller;
+use TYPO3\CMS\Backend\Attribute\AsController;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -91,7 +91,7 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		return $currentCatUserUid ? $this->findByUid($currentCatUserUid) : null;
 	}	
 
-	protected function initializeAction()
+	protected function initializeAction(): void
 	{
 		$pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         	$pageRenderer->addCssFile('EXT:benotes/Resources/Public/css/tx_benotes.css');
@@ -120,31 +120,19 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
     protected function getIcon(string $key): Icon
     {
-        return $this->iconFactory->getIcon($key, Icon::SIZE_SMALL);
+        return $this->iconFactory->getIcon($key, IconSize::SMALL);
     }
 
-    /**
-     * v12 returns ModuleTemplate, v11 ViewInterface
-     *
-     * @return ModuleTemplate|ViewInterface
-     */
-    protected function getViewToUse()
-    {
-        if (method_exists($this->moduleTemplate, 'assign')) {
-            return $this->moduleTemplate;
-        }
-        return $this->view;
-    }
+    protected function initializeModuleTemplate(
+        ServerRequestInterface $request,
+	    ): ModuleTemplate {
+		$view = $this->moduleTemplateFactory->create($request);
 
-    protected function renderViewToUse(): ResponseInterface
-    {
-        if (!$this->getViewToUse() instanceof ModuleTemplate) {
-            // v11
-            $this->moduleTemplate->setContent($this->getViewToUse()->render());
-            return $this->htmlResponse($this->moduleTemplate->render());
-        }
-        return $this->htmlResponse($this->getViewToUse()->render());
-    }
+		//$this->modifyDocHeaderComponent($view);
+		$view->setFlashMessageQueue($this->getFlashMessageQueue());
+
+		return $view;
+	    }
 
 	/**
 	 * action list
@@ -158,11 +146,11 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		}
 		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
 		$categories = $this->categoryRepository->findByCruser($currentCatUserUid);
-		//$this->view->assign('title', $title);
-		$this->getViewToUse()->assign('categories', $categories);
-	        $this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
-
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('categories', $categories);
+	        $view->assign('actionMethodName', $this->actionMethodName);
+        	
+		return $view->renderResponse('Category/List');
 	}
 
 	/**
@@ -173,10 +161,11 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function showAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
 	{
-		$this->getViewToUse()->assign('category', $category);
-		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
-
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('category', $category);
+		$view->assign('actionMethodName', $this->actionMethodName);
+        	
+		return $view->renderResponse('Category/Show');
 	}
 
 
@@ -189,14 +178,13 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function newAction(\Dl\Benotes\Domain\Model\Category $newCategory = NULL): ResponseInterface
 	{
-		//$this->view->assign('title', $title);
-		$this->getViewToUse()->assign('newCategory', $newCategory);
-
 		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
-		$this->getViewToUse()->assign('cruser', $currentCatUserUid);
-		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
-
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('newCategory', $newCategory);
+		$view->assign('cruser', $currentCatUserUid);
+		$view->assign('actionMethodName', $this->actionMethodName);
+        	
+		return $view->renderResponse('Category/New');
 	}
 
 	/**
@@ -207,11 +195,11 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function createAction(\Dl\Benotes\Domain\Model\Category $newCategory): ResponseInterface
 	{
-	
 		$currentCatUserUid = (int)$this->getBackendUser()->user['uid'];
-		$this->getViewToUse()-assign('cruser', $currentCatUserUid);
-		
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('cruser', $currentCatUserUid);
 		$this->categoryRepository->add($newCategory);
+		
 		return $this->redirect('list');
 	}
 
@@ -224,9 +212,11 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function editAction(\Dl\Benotes\Domain\Model\Category $category): ResponseInterface
 	{
-		$this->getViewToUse()-assign('category', $category);
-		$this->getViewToUse()->assign('actionMethodName', $this->actionMethodName);
-        	return $this->renderViewToUse();
+		$view = $this->initializeModuleTemplate($this->request);
+		$view->assign('category', $category);
+		$view->assign('actionMethodName', $this->actionMethodName);
+        	
+		return $view->renderResponse('Category/Edit');
 	}
 
 	/**

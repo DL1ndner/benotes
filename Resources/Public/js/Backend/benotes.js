@@ -10,7 +10,7 @@ class NotificationModule {
     constructor() {
     let target = document.getElementById('bodytext');
     const config = {
-      toolbar: [ 'bold', 'italic', '|', 'bulletedList', 'numberedList', '|', 'link', '|', 'sourceEditing' ],
+      licenseKey: 'GPL', toolbar: [ 'bold', 'italic', '|', 'bulletedList', 'numberedList', '|', 'link', '|', 'sourceEditing' ],
     }
     ClassicEditor.builtinPlugins = [
       Essentials,
