@@ -2,14 +2,7 @@
 <f:section name="Subject">Mitteilung {note.title} im Backend geändert</f:section>
 <f:section name="Main">
   <h4>Hallo,</h4>
-  <p>jemand hat die Mitteilung "{note.title}" geändert:</p>
-  <quote>
-    <f:format.raw>
-      <f:format.crop maxCharacters="200" append="...">
-        {note.bodytext-> f:sanitize.html(build: 'default')}}
-      </f:format.crop>
-   </f:format.raw>
-  </quote>
-  <p>Die ganze Mitteilung findest Du im <a href="{baseUri}/typo3">Backend von {typo3.sitename}</a>.</p>
+  <p>jemand hat die Mitteilung "{note.title}" geändert.</p>
+  <p>Die Mitteilung findest Du im <a href="{baseUri}/typo3">Backend von {typo3.sitename}</a>.</p>
 
 </f:section>
