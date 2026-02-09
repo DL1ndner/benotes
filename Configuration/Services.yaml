@@ -8,4 +8,18 @@ services:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
 
-    
+# Widget: Public Notes
+  dashboard.widget.benotes.publicnotes:
+    class: 'Dl\Benotes\Widgets\PublicNotesWidget'
+    arguments:
+      $options:
+        refreshAvailable: true
+    tags:
+      - name: dashboard.widget
+        identifier: 'benotes-publicnotes'
+        groupNames: 'news'
+        title: 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:widgets.publicNotes.title'
+        description: 'LLL:EXT:benotes/Resources/Private/Language/locallang.xlf:widgets.publicNotes.description'
+        iconIdentifier: 'content-widget-list'
+        height: 'medium'
+        width: 'medium'

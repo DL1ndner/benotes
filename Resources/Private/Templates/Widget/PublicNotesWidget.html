@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" 
+      xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{items}">
+    <f:then>
+        <div class="widget-content-main">
+            <div class="widget-list">
+                <f:for each="{items}" as="item">
+                    <div class="widget-list-item">
+                        <div class="widget-list-item-title">
+                            <a href="/typo3/module/user/benotes/Note/show?note={item.uid}" target="_top">
+                                <strong>{item.title}</strong>
+                            </a>
+                            <f:if condition="{item.category}">
+                                <span class="badge badge-info">{item.category}</span>
+                            </f:if>
+                        </div>
+                        <div class="widget-list-item-content">
+                            {item.content}
+                        </div>
+                        <div class="widget-list-item-meta">
+                            <span class="text-muted">
+                                <f:if condition="{item.crdate}">
+                                    <f:then>
+                                        <f:format.date format="d.m.Y H:i">{item.crdate}</f:format.date>
+                                    </f:then>
+                                    <f:else>
+                                        -
+                                    </f:else>
+                                </f:if>
+                                <f:if condition="{item.username}">
+                                    · {item.username}
+                                </f:if>
+                            </span>
+                        </div>
+                    </div>
+                </f:for>
+            </div>
+        </div>
+    </f:then>
+    <f:else>
+        <div class="widget-content-main">
+            <div class="widget-content-empty">
+                <p>No public notes available</p>
+            </div>
+        </div>
+    </f:else>
+</f:if>
+
+</html>
