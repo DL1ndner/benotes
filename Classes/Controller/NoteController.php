@@ -60,6 +60,7 @@ use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Dl\Benotes\Domain\Repository\NoteRepository;
 use Dl\Benotes\Domain\Repository\CategoryRepository;
@@ -292,7 +293,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$view->assign('category',$category);
 		$view->assign('cruser', $currentUserUid);
 		$view->assign('public',$isitpublic);
-		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId(1);
+		$config = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $storagePid = (int)$config['persistence']['storagePid'];
+		$site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($storagePid);
 		
 		// if note is public, send message to recipients defined by typoscript
 		if($isitpublic == 1) {
