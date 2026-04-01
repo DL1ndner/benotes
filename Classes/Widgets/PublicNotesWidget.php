@@ -222,7 +222,7 @@ class PublicNotesWidget implements WidgetInterface, RequestAwareWidgetInterface,
     public function getCssFiles(): array
     {
         return [
-            'EXT:benotes/Resources/Public/Css/PublicNotesWidget.css',
+            'EXT:benotes/Resources/Public/css/PublicNotesWidget.css',
         ];
     }
 }
