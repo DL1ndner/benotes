@@ -15,7 +15,7 @@
 }
 
 .widget-list-item:hover {
-    background-color: #f8f9fa;
+    background-color: rgba(66,66,66,0.5);
 }
 
 .widget-list-item-title {
