@@ -114,6 +114,18 @@
 			<trans-unit id="tx_benotes_domain_model_category.savenew">
 				<target>Kategorie speichern</target>
 			</trans-unit>
+			<trans-unit id="widgets.publicNotes.title">
+				<target>BackendNotes - Letzte öffentliche Mitteilungen</target>
+			</trans-unit>
+			<trans-unit id="widgets.publicNotes.description">
+				<target>Zeigt die letzten 6 öffentlichen Mitteilungen an.</target>
+			</trans-unit>
+			<trans-unit id="widget.private.title">
+				<target>BackendNotes - Deine letzten privaten Notizen</target>
+			</trans-unit>
+			<trans-unit id="widget.private.description">
+				<target>Zeigt Deine letzten 6 privaten Notizen an.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -28,4 +28,6 @@ call_user_func(function()
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths']['700'] = 'EXT:benotes/Resources/Private/Templates/Email/';
 $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['benotes'] = 'EXT:benotes/Resources/Public/css/tx_benotes.css';
 
+// Register template paths for Dashboard widgets
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['benotes'] = ['Dl\\Benotes\\ViewHelpers'];
 ?>
