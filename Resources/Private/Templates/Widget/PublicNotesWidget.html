@@ -5,6 +5,11 @@
 <f:if condition="{items}">
     <f:then>
         <div class="widget-content-main">
+            <div class="align-right">
+            	<a href="/typo3/module/user/benotes/Note/new" class="btn btn-primary" target="_top">
+               		<f:translate key="widgets.publicNotes.new" />
+            	</a>
+            </div>
             <div class="widget-list">
                 <f:for each="{items}" as="item">
                     <div class="widget-list-item">
@@ -42,7 +47,7 @@
     <f:else>
         <div class="widget-content-main">
             <div class="widget-content-empty">
-                <p>No public notes available</p>
+                <p><f:translate key="widgets.publicNotes.nonotes" /></p>
             </div>
         </div>
     </f:else>

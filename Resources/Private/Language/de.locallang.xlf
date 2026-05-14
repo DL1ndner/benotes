@@ -117,6 +117,12 @@
 			<trans-unit id="widgets.publicNotes.title">
 				<target>BackendNotes - Letzte öffentliche Mitteilungen</target>
 			</trans-unit>
+			<trans-unit id="widgets.publicNotes.new">
+				<target>Neue Mitteilung/Notiz</target>
+			</trans-unit>
+			<trans-unit id="widgets.publicNotes.nonotes">
+				<target>Keine Mitteilungen vorhanden.</target>
+			</trans-unit>
 			<trans-unit id="widgets.publicNotes.description">
 				<target>Zeigt die letzten 6 öffentlichen Mitteilungen an.</target>
 			</trans-unit>
@@ -125,6 +131,9 @@
 			</trans-unit>
 			<trans-unit id="widget.private.description">
 				<target>Zeigt Deine letzten 6 privaten Notizen an.</target>
+			</trans-unit>
+			<trans-unit id="widgets.private.nonotes">
+				<target>Keine Notizen vorhanden.</target>
 			</trans-unit>
 		</body>
 	</file>

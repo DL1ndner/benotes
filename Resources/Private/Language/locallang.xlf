@@ -117,6 +117,12 @@
 			<trans-unit id="widgets.publicNotes.title">
 				<source>Benotes - Latest public notes</source>
 			</trans-unit>
+			<trans-unit id="widgets.publicNotes.new">
+				<source>Add Note</source>
+			</trans-unit>
+			<trans-unit id="widgets.publicNotes.nonotes">
+				<source>No public notes available.</source>
+			</trans-unit>
 			<trans-unit id="widgets.publicNotes.description">
 				<source>Shows the last 10 public notes</source>
 			</trans-unit>
@@ -125,6 +131,9 @@
 			</trans-unit>
 			<trans-unit id="widget.private.description">
 				<source>Shows the last 10 private notes of the logged-in backend user</source>
+			</trans-unit>
+			<trans-unit id="widgets.private.nonotes">
+				<source>No private notes available.</source>
 			</trans-unit>
 		</body>
 	</file>
